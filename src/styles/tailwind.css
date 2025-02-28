@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+/* https://tailwindcss.com/docs/adding-custom-styles */
+
+* {
+  font-size: 62.5%;
+}
+
+@theme {
+  --spacing: 0.1rem;
+}
