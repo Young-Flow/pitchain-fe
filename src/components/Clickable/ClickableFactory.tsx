@@ -36,7 +36,7 @@ class UnderlineClickableFormatter implements ClickableFormatter {
     const { selected, ...restProps } = props;
 
     return {
-      className: `label1P hover:text-neutral-700 text-neutral-900 active:text-neutral-900 ${selected && 'border-b-2 border-primary-500'}`,
+      className: `label1p hover:text-neutral-700 text-neutral-900 active:text-neutral-900 ${selected && 'border-b-2 border-primary-500'}`,
       restProps,
     };
   }
