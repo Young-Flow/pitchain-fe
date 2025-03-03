@@ -11,7 +11,7 @@ const meta = {
   argTypes: {
     shape: {
       control: { type: 'select' },
-      options: ['round', 'square', 'underline', 'text'],
+      options: ['square', 'round', 'underline', 'text'],
     },
     size: {
       control: { type: 'select' },
@@ -33,21 +33,13 @@ const meta = {
     },
   },
   args: {
-    shape: 'round', // 기본값
+    shape: 'square', // 기본값
     color: 'primary', // 기본값
     onClick: fn(() => console.log('Clicked')),
   },
 } satisfies Meta<typeof Clickable>;
 
 export default meta;
-
-export const Round: StoryObj<typeof meta> = {
-  args: {
-    shape: 'round',
-    size: 'large',
-    children: 'Hello, world!',
-  },
-};
 
 export const Square: StoryObj<typeof meta> = {
   args: {
@@ -57,11 +49,22 @@ export const Square: StoryObj<typeof meta> = {
   },
 };
 
-export const underline: StoryObj<typeof meta> = {
+export const Round: StoryObj<typeof meta> = {
+  args: {
+    shape: 'round',
+    size: 'large',
+    children: 'Hello, world!',
+  },
+};
+
+export const Underline: StoryObj<typeof meta> = {
   args: {
     shape: 'underline',
-    color: 'primary',
+    selected: true, // 기본값 false
     children: 'Hello, world!',
+  },
+  argTypes: {
+    selected: { control: 'boolean' }, // Storybook UI에서 boolean toggle 가능
   },
 };
 
