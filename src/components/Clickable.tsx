@@ -28,8 +28,8 @@ type ClickableFactoryTextShapeProps = {
   shape: 'text';
 };
 
-const COLOR_SET: Record<ColorSet, string> = {
-  primary: 'text-neutral-900 bg-primary-600 active:bg-primary-800 hover:bg-primary-700',
+const CLICKABLE_COLOR_SET: Record<ColorSet, string> = {
+  primary: 'active:bg-primary-800  text-neutral-900 bg-primary-600 hover:bg-primary-700',
   secondary: 'text-neutral-100',
   google: 'text-neutral-900',
   naver: 'text-neutral-100',
@@ -43,7 +43,7 @@ class SquareClickableFormatter implements ClickableFormatter {
     const { shape, color, ...restProps } = props;
 
     return {
-      className: `body1p rounded-2xl py-14 px-16  ${COLOR_SET[color]}`,
+      className: `body1p rounded-2xl py-14 px-16 ${CLICKABLE_COLOR_SET[color]}`,
       restProps,
     };
   }
