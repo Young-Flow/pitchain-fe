@@ -5,7 +5,9 @@ interface ClickableFormatter {
     props: ClickableFactoryProps & ComponentPropsWithoutRef<T>,
   ): { className: string; restProps: object };
 }
-type ColorSet = "primary" | "secondary" | "google" | "naver" | "kakao";
+type ClickableColorSet = "primary" | "secondary" | "google" | "naver" | "kakao";
+
+type ClickableSizeProps = "small" | "medium" | "large";
 
 type ClickableFactoryProps =
   | ClickableFactoryRoundShapeProps
@@ -16,19 +18,22 @@ type ClickableFactoryProps =
 type ClickableFactoryRoundShapeProps = {
   shape: "round";
 };
+
 type ClickableFactorySquareShapeProps = {
   shape: "square";
   color: "primary" | "secondary" | "google" | "naver" | "kakao";
 };
+
 type ClickableFactoryUnderlineShapeProps = {
   shape: "underline";
   selected?: boolean;
 };
+
 type ClickableFactoryTextShapeProps = {
   shape: "text";
 };
 
-const CLICKABLE_COLOR_SET: Record<ColorSet, string> = {
+const CLICKABLE_COLOR_SET: Record<ClickableColorSet, string> = {
   primary:
     "text-neutral-900 bg-primary-600 hover:bg-primary-700 active:bg-primary-800 hover:bg-primary-700 disabled:bg-neutral-300",
   secondary:
@@ -36,6 +41,12 @@ const CLICKABLE_COLOR_SET: Record<ColorSet, string> = {
   google: "text-neutral-900 border-1 border-neutral-400",
   kakao: "text-neutral-900 bg-[#FEE500]",
   naver: "text-neutral-100 bg-[#03C75A]",
+};
+
+const CLICKABLE_SIZE_SET: Record<ClickableSizeProps, string> = {
+  small: "py-6 px-8",
+  medium: "py-10 px-12",
+  large: "py-14 px-16",
 };
 
 class SquareClickableFormatter implements ClickableFormatter {
