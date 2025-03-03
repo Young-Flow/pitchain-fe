@@ -1,11 +1,11 @@
-import { ComponentPropsWithoutRef, ElementType } from 'react';
+import { ComponentPropsWithoutRef, ElementType } from "react";
 
 interface ClickableFormatter {
   doFormat<T extends ElementType>(
     props: ClickableFactoryProps & ComponentPropsWithoutRef<T>,
   ): { className: string; restProps: object };
 }
-type ColorSet = 'primary' | 'secondary' | 'google' | 'naver' | 'kakao';
+type ColorSet = "primary" | "secondary" | "google" | "naver" | "kakao";
 
 type ClickableFactoryProps =
   | ClickableFactoryRoundShapeProps
@@ -14,26 +14,28 @@ type ClickableFactoryProps =
   | ClickableFactoryTextShapeProps;
 
 type ClickableFactoryRoundShapeProps = {
-  shape: 'round';
+  shape: "round";
 };
 type ClickableFactorySquareShapeProps = {
-  shape: 'square';
-  color: 'primary' | 'secondary' | 'google' | 'naver' | 'kakao';
+  shape: "square";
+  color: "primary" | "secondary" | "google" | "naver" | "kakao";
 };
 type ClickableFactoryUnderlineShapeProps = {
-  shape: 'underline';
+  shape: "underline";
   selected?: boolean;
 };
 type ClickableFactoryTextShapeProps = {
-  shape: 'text';
+  shape: "text";
 };
 
 const CLICKABLE_COLOR_SET: Record<ColorSet, string> = {
-  primary: 'active:bg-primary-800 text-neutral-900 bg-primary-600 hover:bg-primary-700',
-  secondary: 'text-neutral-100',
-  google: 'text-neutral-900',
-  naver: 'text-neutral-100',
-  kakao: 'text-neutral-900',
+  primary:
+    "text-neutral-900 bg-primary-600 hover:bg-primary-700 active:bg-primary-800 hover:bg-primary-700 disabled:bg-neutral-300",
+  secondary:
+    "text-neutral-100 bg-secondary-500 hover:bg-secondary-400 active:bg-secondary-700 hover:bg-secondary-600 disabled:bg-neutral-300",
+  google: "text-neutral-900 border-1 border-neutral-400",
+  kakao: "text-neutral-900 bg-[#FEE500]",
+  naver: "text-neutral-100 bg-[#03C75A]",
 };
 
 class SquareClickableFormatter implements ClickableFormatter {
@@ -52,7 +54,7 @@ class UnderlineClickableFormatter implements ClickableFormatter {
     const { selected, ...restProps } = props;
 
     return {
-      className: `label1P hover:text-neutral-700 text-neutral-900 active:text-neutral-900 ${selected && 'border-b-2 border-primary-500'}`,
+      className: `label1P hover:text-neutral-700 text-neutral-900 active:text-neutral-900 ${selected && "border-b-2 border-primary-500"}`,
       restProps,
     };
   }
@@ -63,7 +65,7 @@ class TextClickableFormatter implements ClickableFormatter {
     const { ...restProps } = props;
 
     return {
-      className: 'text-neutral-900 hover:text-neutral-700 active:text-secondary-500 disabled:text-neutral-400 label1',
+      className: "text-neutral-900 hover:text-neutral-700 active:text-secondary-500 disabled:text-neutral-400 label1",
       restProps,
     };
   }
@@ -73,9 +75,9 @@ class ClickablePropsFormatter {
   private static _instance: ClickablePropsFormatter;
   private static formatterMap = new Map<string, ClickableFormatter>([
     // ["round", new RoundClickableFormatter()],
-    ['square', new SquareClickableFormatter()],
-    ['underline', new UnderlineClickableFormatter()],
-    ['text', new TextClickableFormatter()],
+    ["square", new SquareClickableFormatter()],
+    ["underline", new UnderlineClickableFormatter()],
+    ["text", new TextClickableFormatter()],
   ]);
 
   // private 생성자
@@ -95,19 +97,19 @@ class ClickablePropsFormatter {
     const formatter = ClickablePropsFormatter.formatterMap.get(props.shape);
 
     if (!formatter) {
-      throw new Error('Invalid shape');
+      throw new Error("Invalid shape");
     }
 
     return formatter.doFormat(props);
   }
 }
 
-export function Clickable<T extends ElementType = 'button'>({
+export function Clickable<T extends ElementType = "button">({
   children,
   Component,
   ...props
 }: ClickableFactoryProps & ComponentPropsWithoutRef<T> & { Component?: T }) {
-  const Render = Component ?? 'button';
+  const Render = Component ?? "button";
 
   const { className, restProps } = ClickablePropsFormatter.instance.formatProps<T>(
     props as ClickableFactoryProps & ComponentPropsWithoutRef<T>,
