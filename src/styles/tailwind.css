@@ -53,6 +53,87 @@
   --color-error-900: #150807;
 }
 
+.heading1 {
+  @apply font-paperlogy font-bold text-[40px]/[48px];
+}
+
+.heading2 {
+  @apply font-paperlogy font-bold text-[32px]/[40px];
+}
+
+.heading3 {
+  @apply font-paperlogy font-bold text-[28px]/[36px];
+}
+
+.heading4 {
+  @apply font-paperlogy font-bold text-[24px]/[32px];
+}
+
+.heading5 {
+  @apply font-paperlogy font-semibold text-[22px]/[28px];
+}
+
+.heading6 {
+  @apply font-paperlogy font-semibold text-[16px]/[24px];
+}
+
+.heading7 {
+  @apply font-paperlogy font-bold text-[14px]/[20px];
+}
+
+.label1 {
+  @apply font-spoqa text-[14px]/[20px];
+}
+
+.label2 {
+  @apply font-spoqa text-[12px]/[16px];
+}
+
+.label3 {
+  @apply font-spoqa text-[11px]/[16px];
+}
+
+.label1p {
+  @apply font-paperlogy text-[14px]/[20px];
+}
+
+.label2p {
+  @apply font-paperlogy text-[12px]/[16px];
+}
+
+.label3p {
+  @apply font-paperlogy text-[11px]/[16px];
+}
+
+.paragraph {
+  @apply font-spoqa text-[16px]/[24px];
+}
+
+.body1 {
+  @apply font-spoqa text-[16px]/[24px];
+}
+
+.body2 {
+  @apply font-spoqa text-[14px]/[20px];
+}
+
+.body3 {
+  @apply font-spoqa text-[12px]/[16px];
+}
+
+.body1p {
+  @apply font-paperlogy text-[16px]/[24px];
+}
+
+.body2p {
+  @apply font-paperlogy text-[14px]/[20px];
+}
+
+.body3p {
+  @apply font-paperlogy text-[12px]/[16px];
+}
+
+
 @font-face {
   font-family: 'Paperlogy';
   src: url('../assets/fonts/Paperlogy-1Thin.ttf') format('truetype');
