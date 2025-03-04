@@ -16,7 +16,7 @@ export default function DefaultLayout() {
 
 function DefaultHeader() {
   return (
-    <header className="flex items-center justify-between px-48 py-8">
+    <header className="flex w-full items-center justify-between px-48 py-8">
       <Logo className="h-40 w-140" />
 
       <Clickable shape="text" Component={Link} to={'/signin'}>
