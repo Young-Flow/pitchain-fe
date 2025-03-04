@@ -20,5 +20,5 @@ const formatClassName = (size: AvatarSize, className?: string) => {
 
 export default function Avatar({ size, className, ...props }: AvatarProps) {
   const formattedClassName = formatClassName(size, className);
-  return <img className={formattedClassName} {...props} />;
+  return <img className={formattedClassName} alt="avatar" {...props} />;
 }
