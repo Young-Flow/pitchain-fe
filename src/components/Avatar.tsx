@@ -6,22 +6,19 @@ type AvatarProps = ComponentPropsWithoutRef<'img'> & {
   size: AvatarSize;
 };
 
-const sizeMap = new Map<AvatarSize, Number>([
-  ['small', 36],
-  ['medium', 40],
-  ['large', 48],
-  ['xlarge', 72],
+const sizeMap = new Map<AvatarSize, string>([
+  ['small', 'size-36'],
+  ['medium', 'size-40'],
+  ['large', 'size-48'],
+  ['xlarge', 'size-72'],
 ]);
 
-const propsFormatter = ({ size, className, ...props }: AvatarProps) => {
-  const avatarSize = sizeMap.get(size);
-  return {
-    className: `${className} w-${avatarSize} h-${avatarSize}`,
-    ...props,
-  };
+const formatClassName = (size: AvatarSize, className?: string) => {
+  const sizeClass = sizeMap.get(size);
+  return className ? `${sizeClass} ${className}` : sizeClass;
 };
 
-export default function Avatar(props: AvatarProps) {
-  const formattedProps = propsFormatter(props);
-  return <img {...formattedProps} />;
+export default function Avatar({ size, className, ...props }: AvatarProps) {
+  const formattedClassName = formatClassName(size, className);
+  return <img className={formattedClassName} {...props} />;
 }
