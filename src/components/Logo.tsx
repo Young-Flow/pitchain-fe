@@ -1,4 +1,4 @@
-import LogoImage from '../assets/images/logo.svg';
+import LogoImage from '@assets/images/logo.svg';
 import { Link } from 'react-router';
 
 export default function Logo({ className }: { className?: string }) {

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import DefaultLayout from '../widgets/default/DefaultLayout';
+import DefaultLayout from '@widgets/default/DefaultLayout';
 import { BrowserRouter } from 'react-router';
 
 const meta = {

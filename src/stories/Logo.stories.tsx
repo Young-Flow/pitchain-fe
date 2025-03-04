@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Logo from '../components/Logo';
+import Logo from '@components/Logo';
 import { BrowserRouter } from 'react-router';
 
 const meta = {

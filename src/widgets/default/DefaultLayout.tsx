@@ -1,6 +1,6 @@
 import { Link, Outlet } from 'react-router';
-import Logo from '../../components/Logo';
-import Clickable from '../../components/Clickable/Clickable';
+import Logo from '@components/Logo';
+import Clickable from '@components/Clickable/Clickable';
 
 export default function DefaultLayout() {
   return (

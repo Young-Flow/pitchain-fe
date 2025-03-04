@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react';
+import { useToggle } from '@hooks/utils/useToggle';
 import { Show } from 'utilinent';
-import { useToggle } from '../hooks/utils/useToggle';
 
 export default function Form({ children, ...props }: ComponentPropsWithoutRef<'form'>) {
   return (
@@ -19,7 +19,7 @@ Form.InputLabel = function ({
     <label className="body1" {...props}>
       {children}
       <Show when={required}>
-        <span className="text-error-600 align-super"> *</span>
+        <span className="text-error-400 align-super"> *</span>
       </Show>
     </label>
   );
