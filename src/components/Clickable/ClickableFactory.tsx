@@ -77,7 +77,7 @@ export class ClickablePropsFormatter {
     const formatter = ClickablePropsFormatter.formatterMap.get(props.shape);
 
     if (!formatter) {
-      throw new Error('Invalid shape');
+      throw new Error('Invalid clickable shape');
     }
 
     return formatter.doFormat(props);
