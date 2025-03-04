@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef } from 'react';
 import { Show } from 'utilinent';
 import { useToggle } from '../hooks/utils/useToggle';
 
-export function Form({ children, ...props }: ComponentPropsWithoutRef<'form'>) {
+export default function Form({ children, ...props }: ComponentPropsWithoutRef<'form'>) {
   return (
     <form noValidate {...props}>
       {children}
