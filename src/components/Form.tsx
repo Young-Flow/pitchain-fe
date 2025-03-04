@@ -19,7 +19,7 @@ Form.InputLabel = function ({
     <label className="body1" {...props}>
       {children}
       <Show when={required}>
-        <span className="text-error-600">*</span>
+        <span className="text-error-600 align-super"> *</span>
       </Show>
     </label>
   );

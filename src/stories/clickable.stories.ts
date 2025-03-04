@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import { Clickable } from '../components/Clickable/Clickable';
+
 const meta = {
   title: 'Button',
   component: Clickable,
