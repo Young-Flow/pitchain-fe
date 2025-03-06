@@ -55,7 +55,7 @@ ShortPitchCard.MetaData = function ({ className, children, ...props }: Component
 export default function ShortPitchCard({ size, className, children, ...props }: ShortPitchCardProps) {
   const CLASSNAME_BY_SIZE = CONTAINER_STYLES_BY_SIZE.get(size);
   return (
-    <div className={clsx('rounded-8 flex', CLASSNAME_BY_SIZE, className)} {...props}>
+    <div className={clsx('flex', CLASSNAME_BY_SIZE, className)} {...props}>
       {children}
     </div>
   );
