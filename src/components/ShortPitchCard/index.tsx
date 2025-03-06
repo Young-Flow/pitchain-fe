@@ -23,7 +23,7 @@ ShortPitchCard.Logo = function ({ ...props }: ComponentPropsWithoutRef<'img'>) {
   return <Avatar size="medium" {...props} />;
 };
 
-ShortPitchCard.Title = function ({ className, children, ...props }: ComponentPropsWithoutRef<'span'>) {
+ShortPitchCard.Title = function ({ className, children, ...props }: ComponentPropsWithoutRef<'div'>) {
   return (
     <div className={clsx('heading7 w-full', className)} {...props}>
       {children}
@@ -33,9 +33,9 @@ ShortPitchCard.Title = function ({ className, children, ...props }: ComponentPro
 
 ShortPitchCard.Label = function ({ className, children, ...props }: ComponentPropsWithoutRef<'span'>) {
   return (
-    <span className={clsx('label1 text-neutral-500', className)} {...props}>
+    <div className={clsx('label1 text-neutral-500', className)} {...props}>
       {children}
-    </span>
+    </div>
   );
 };
 
