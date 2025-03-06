@@ -19,13 +19,18 @@ export abstract class Query extends Fetcher {
       });
   }
 
-  queryOptions = <TQueryFnData = unknown, TError = Error, TData = TQueryFnData, TQueryKey extends QueryKey = QueryKey>(
+  queryOptions = <
+    TQueryFnData = unknown,
+    TError = { code: number; message: string },
+    TData = TQueryFnData,
+    TQueryKey extends QueryKey = QueryKey,
+  >(
     options: Parameters<typeof queryOptions<TQueryFnData, TError, TData, TQueryKey>>[0],
   ) => queryOptions(options);
 
   infiniteQueryOptions = <
     TQueryFnData,
-    TError = Error,
+    TError = { code: number; message: string },
     TData = InfiniteData<TQueryFnData>,
     TQueryKey extends QueryKey = QueryKey,
     TPageParam = unknown,

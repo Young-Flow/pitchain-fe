@@ -10,7 +10,12 @@ export abstract class Mutation extends Fetcher {
     });
   }
 
-  mutationOptions = <TData = unknown, TError = Error, TVariables = void, TContext = unknown>(
+  mutationOptions = <
+    TData = unknown,
+    TError = { code: number; message: string },
+    TVariables = void,
+    TContext = unknown,
+  >(
     options: UseMutationOptions<TData, TError, TVariables, TContext>,
   ): UseMutationOptions<TData, TError, TVariables, TContext> => options;
 }
