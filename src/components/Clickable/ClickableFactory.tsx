@@ -11,10 +11,10 @@ import { CLICKABLE_COLOR_SET, CLICKABLE_PADDING_SIZE_SET, CLICKABLE_SIZE_SET } f
 
 class RoundClickableFormatter implements ClickableFormatter {
   doFormat<T extends ElementType>(props: ClickableFactoryRoundShapeProps & ComponentPropsWithoutRef<T>) {
-    const { size, padding, ...restProps } = props;
+    const { size, padding, className, ...restProps } = props;
 
     return {
-      className: `label1 flex justify-center items-center ${CLICKABLE_COLOR_SET['primary']} ${padding && CLICKABLE_PADDING_SIZE_SET[size]} ${CLICKABLE_SIZE_SET[size]}`,
+      className: `label1 flex justify-center items-center ${className} ${CLICKABLE_COLOR_SET['primary']} ${padding && CLICKABLE_PADDING_SIZE_SET[size]} ${CLICKABLE_SIZE_SET[size]}`,
       restProps,
     };
   }
@@ -22,10 +22,10 @@ class RoundClickableFormatter implements ClickableFormatter {
 
 class SquareClickableFormatter implements ClickableFormatter {
   doFormat<T extends ElementType>(props: ClickableFactorySquareShapeProps & ComponentPropsWithoutRef<T>) {
-    const { color, ...restProps } = props;
+    const { color, className, ...restProps } = props;
 
     return {
-      className: `body1p rounded-2xl py-14 px-16 ${CLICKABLE_COLOR_SET[color]}`,
+      className: `body1p rounded-2xl py-14 px-16  ${className} ${CLICKABLE_COLOR_SET[color]}`,
       restProps,
     };
   }
@@ -33,10 +33,10 @@ class SquareClickableFormatter implements ClickableFormatter {
 
 class UnderlineClickableFormatter implements ClickableFormatter {
   doFormat<T extends ElementType>(props: ClickableFactoryUnderlineShapeProps & ComponentPropsWithoutRef<T>) {
-    const { selected, ...restProps } = props;
+    const { selected, className, ...restProps } = props;
 
     return {
-      className: `label1p hover:text-neutral-700 text-neutral-900 active:text-neutral-900 ${selected && 'border-b-2 border-primary-500'}`,
+      className: `label1p hover:text-neutral-700 text-neutral-900 active:text-neutral-900  ${className} ${selected && 'border-b-2 border-primary-500'}`,
       restProps,
     };
   }
@@ -44,9 +44,11 @@ class UnderlineClickableFormatter implements ClickableFormatter {
 
 class TextClickableFormatter implements ClickableFormatter {
   doFormat<T extends ElementType>(props: ClickableFactoryTextShapeProps & ComponentPropsWithoutRef<T>) {
+    const { className, ...restProps } = props;
+
     return {
-      className: 'text-neutral-900 hover:text-neutral-700 active:text-secondary-500 disabled:text-neutral-400 label1',
-      restProps: props,
+      className: `text-neutral-900 hover:text-neutral-700 active:text-secondary-500 disabled:text-neutral-400 label1 ${className}`,
+      restProps: restProps,
     };
   }
 }
