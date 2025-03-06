@@ -19,9 +19,11 @@ function DefaultHeader() {
     <header className="flex w-full items-center justify-between px-48 py-8">
       <Logo className="h-40 w-140" />
 
-      <Clickable shape="text" Component={Link} to={'/signin'}>
-        로그인
-      </Clickable>
+      <div>
+        <Clickable shape="text" Component={Link} to={'/sign/socialLogin'}>
+          로그인
+        </Clickable>
+      </div>
     </header>
   );
 }
