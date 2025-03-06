@@ -70,16 +70,16 @@ type ShortPitchCardProps = ComponentPropsWithoutRef<'div'> & {
   size: Size;
 };
 
-const SHORTPITCHCARD_SIZE_MAP = new Map<ShortPitchCardProps['size'], string>([
+const SHORTPITCHCARD_CLASSNAME_BY_SIZE_MAP = new Map<ShortPitchCardProps['size'], string>([
   ['mini', 'w-358 h-98'],
-  ['small', 'w-296 h-213'],
-  ['medium', 'w-310 h-175'],
+  ['small', 'w-296 h-213 flex-col'],
+  ['medium', 'w-310 h-175 flex-col'],
 ]);
 
 export default function ShortPitchCard({ size, className, children, ...props }: ShortPitchCardProps) {
-  const SHORTPITCHCARD_SIZE_CLASSNAME = SHORTPITCHCARD_SIZE_MAP.get(size);
+  const SHORTPITCHCARD_CLASSNAME_BY_SIZE = SHORTPITCHCARD_CLASSNAME_BY_SIZE_MAP.get(size);
   return (
-    <div className={clsx('rounded-8 flex flex-col', SHORTPITCHCARD_SIZE_CLASSNAME, className)} {...props}>
+    <div className={clsx('rounded-8 flex', SHORTPITCHCARD_CLASSNAME_BY_SIZE, className)} {...props}>
       {children}
     </div>
   );
