@@ -4,6 +4,8 @@ import DefaultLayout from '@widgets/Layout/DefaultLayout';
 import SignLayout from '@widgets/Layout/SignLayout';
 import SocialLogin from '@pages/sign/SocialLogin';
 import SocialCallback from '@pages/sign/SocialCallback';
+import BusinessSignIn from '@pages/sign/BusinessSignIn';
+import BusinessSignUp from '@pages/sign/BusinessSignUp';
 
 export default function App() {
   return (
@@ -16,8 +18,8 @@ export default function App() {
         <Route path="/sign/:provider/callback" element={<SocialCallback />} />
 
         <Route path="/sign" element={<SignLayout />}>
-          <Route path="inBusiness" />
-          <Route path="upBusiness" />
+          <Route path="inBusiness" element={<BusinessSignIn />} />
+          <Route path="upBusiness" element={<BusinessSignUp />} />
           <Route path="SocialLogin" element={<SocialLogin />} />
         </Route>
 

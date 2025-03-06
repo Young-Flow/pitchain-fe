@@ -1,9 +1,9 @@
 import { useLocation } from 'react-router';
 
 export default function SocialCallback() {
-  const router = useLocation();
+  const { pathname, search } = useLocation();
 
-  console.log(router.pathname);
+  console.log(pathname, search);
 
-  return <>a</>;
+  return <></>;
 }

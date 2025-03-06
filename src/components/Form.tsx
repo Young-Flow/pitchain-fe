@@ -1,6 +1,7 @@
 import { ComponentPropsWithoutRef } from 'react';
 import { useToggle } from '@hooks/utils/useToggle';
 import { Show } from 'utilinent';
+import clsx from 'clsx';
 
 export default function Form({ children, ...props }: ComponentPropsWithoutRef<'form'>) {
   return (
@@ -39,7 +40,7 @@ Form.InputWrapper = function ({ children, ...props }: ComponentPropsWithoutRef<'
 Form.ErrorMessageIndicator = function ({ errorMessage }: { errorMessage: string }) {
   return (
     <Show when={errorMessage}>
-      <div className={`${errorMessage && 'text-error-500'}`}>{errorMessage}</div>;
+      <div className={clsx(errorMessage && 'text-error-500', 'body3')}>{errorMessage}</div>
     </Show>
   );
 };
