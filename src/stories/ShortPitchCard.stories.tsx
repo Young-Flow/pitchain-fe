@@ -19,7 +19,7 @@ export const Medium: Story = {
       <ShortPitchCard.Description size="medium">
         <ShortPitchCard.Logo src="https://picsum.photos/40" />
         <ShortPitchCard.MetaData>
-          <ShortPitchCard.Title>엄청 멋진 제목</ShortPitchCard.Title>
+          <ShortPitchCard.Title size="medium">엄청 멋진 제목</ShortPitchCard.Title>
           <div className="flex justify-between">
             <ShortPitchCard.Label>피트체인 회사</ShortPitchCard.Label>
             <ShortPitchCard.Label>조회수 20만회</ShortPitchCard.Label>
@@ -37,7 +37,10 @@ export const Small: Story = {
       <ShortPitchCard.Description size="small">
         <ShortPitchCard.Logo src="https://picsum.photos/40" />
         <ShortPitchCard.MetaData>
-          <ShortPitchCard.Title>엄청 멋진 제목이 두줄까지 갈 수 있어요. 이렇게 긴 제목도요</ShortPitchCard.Title>
+          <ShortPitchCard.Title size="small">
+            엄청 멋진 제목이 두줄까지 갈 수 있어요. 이렇게 긴 제목도요. 엄청 멋진 제목이 두줄까지 갈 수 있어요. 이렇게
+            긴 제목도요
+          </ShortPitchCard.Title>
         </ShortPitchCard.MetaData>
       </ShortPitchCard.Description>
     </ShortPitchCard>
@@ -50,7 +53,9 @@ export const Mini: Story = {
       <ShortPitchCard.Thumbnail src="https://picsum.photos/200/300" size="mini" />
       <ShortPitchCard.Description size="mini">
         <ShortPitchCard.MetaData>
-          <ShortPitchCard.Title>엄청 멋진 제목</ShortPitchCard.Title>
+          <ShortPitchCard.Title size="mini">
+            엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목
+          </ShortPitchCard.Title>
           <ShortPitchCard.Label>피트체인 회사</ShortPitchCard.Label>
           <ShortPitchCard.Label>조회수 20만회</ShortPitchCard.Label>
         </ShortPitchCard.MetaData>

@@ -1,9 +1,15 @@
-import { ThumbnailProps, DescriptionProps, ShortPitchCardProps } from './ShortPitchTypes';
+import { ThumbnailProps, TitleProps, DescriptionProps, ShortPitchCardProps } from './ShortPitchTypes';
 
 export const THUMBNAIL_STYLES_BY_SIZE = new Map<ThumbnailProps['size'], string>([
   ['mini', 'w-168 h-98'],
   ['small', 'w-296 h-167'],
   ['medium', 'w-310 h-175'],
+]);
+
+export const TITLE_STYLES_BY_SIZE = new Map<TitleProps['size'], string>([
+  ['mini', 'h-40 line-clamp-2'],
+  ['small', 'h-36 line-clamp-2'],
+  ['medium', 'line-clamp-1'],
 ]);
 
 export const DESCRIPTION_STYLES_BY_SIZE = new Map<DescriptionProps['size'], string>([

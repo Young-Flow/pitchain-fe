@@ -1,25 +1,27 @@
 import Avatar from '@components/Avatar';
 import clsx from 'clsx';
 import { ComponentPropsWithoutRef } from 'react';
-import { ThumbnailProps, DescriptionProps, ShortPitchCardProps } from './ShortPitchTypes';
+import { ThumbnailProps, TitleProps, DescriptionProps, ShortPitchCardProps } from './ShortPitchTypes';
 import {
   THUMBNAIL_STYLES_BY_SIZE,
+  TITLE_STYLES_BY_SIZE,
   DESCRIPTION_STYLES_BY_SIZE,
   CONTAINER_STYLES_BY_SIZE,
 } from './ShortPitchCardconstants';
 
 ShortPitchCard.Thumbnail = function ({ size, className, ...props }: ThumbnailProps) {
   const CLASSNAME_BY_SIZE = THUMBNAIL_STYLES_BY_SIZE.get(size);
-  return <img className={clsx(CLASSNAME_BY_SIZE, className)} alt="video card thumbnail" {...props} />;
+  return <img className={clsx(CLASSNAME_BY_SIZE, 'shrink-0', className)} alt="video card thumbnail" {...props} />;
 };
 
 ShortPitchCard.Logo = function ({ ...props }: ComponentPropsWithoutRef<'img'>) {
   return <Avatar size="medium" {...props} />;
 };
 
-ShortPitchCard.Title = function ({ className, children, ...props }: ComponentPropsWithoutRef<'div'>) {
+ShortPitchCard.Title = function ({ size, className, children, ...props }: TitleProps) {
+  const CLASSNAME_BY_SIZE = TITLE_STYLES_BY_SIZE.get(size);
   return (
-    <div className={clsx('heading7 w-full', className)} {...props}>
+    <div className={clsx(CLASSNAME_BY_SIZE, 'heading7 w-full', className)} {...props}>
       {children}
     </div>
   );
