@@ -2,29 +2,85 @@ import Avatar from '@components/Avatar';
 import clsx from 'clsx';
 import { ComponentPropsWithoutRef } from 'react';
 
-const THUMBNAIL_SIZE_MAP = new Map<string, { width: number; height: number }>([
-  ['small', { width: 296, height: 167 }],
-  ['medium', { width: 310, height: 175 }],
-]);
+type Size = 'mini' | 'small' | 'medium';
 
 type ThumbnailProps = ComponentPropsWithoutRef<'img'> & {
-  src: string;
-  size: 'small' | 'medium';
+  size: Size;
 };
+
+const THUMBNAIL_SIZE_MAP = new Map<ThumbnailProps['size'], string>([
+  ['mini', 'w-168 h-98'],
+  ['small', 'w-296 h-167'],
+  ['medium', 'w-310 h-175'],
+]);
 
 ShortPitchCard.Thumbnail = function ({ size, className, ...props }: ThumbnailProps) {
   const SIZE_CLASSNAME = THUMBNAIL_SIZE_MAP.get(size);
   return <img className={clsx(SIZE_CLASSNAME, className)} alt="video card thumbnail" {...props} />;
 };
 
-type LogoProps = ComponentPropsWithoutRef<'img'> & {
-  src: string;
-};
-
-ShortPitchCard.Logo = function ({ ...props }: LogoProps) {
+ShortPitchCard.Logo = function ({ ...props }: ComponentPropsWithoutRef<'img'>) {
   return <Avatar size="medium" {...props} />;
 };
 
-export default function ShortPitchCard({ children, ...props }: ComponentPropsWithoutRef<'article'>) {
-  return <article {...props}>{children}</article>;
+ShortPitchCard.Title = function ({ className, children, ...props }: ComponentPropsWithoutRef<'span'>) {
+  return (
+    <div className={clsx('heading7 w-full', className)} {...props}>
+      {children}
+    </div>
+  );
+};
+
+ShortPitchCard.Label = function ({ className, children, ...props }: ComponentPropsWithoutRef<'span'>) {
+  return (
+    <span className={clsx('label1 text-neutral-500', className)} {...props}>
+      {children}
+    </span>
+  );
+};
+
+type DescriptionProps = ComponentPropsWithoutRef<'div'> & {
+  size: Size;
+};
+
+const DESCRIPTION_CLASSNAME_BY_SIZE_MAP = new Map<DescriptionProps['size'], string>([
+  ['mini', 'pl-8'],
+  ['small', 'py-6 gap-6'],
+  ['medium', 'py-8 gap-8'],
+]);
+
+ShortPitchCard.Description = function ({ size, className, children, ...props }: DescriptionProps) {
+  const CLASSNAME_BY_SIZE = DESCRIPTION_CLASSNAME_BY_SIZE_MAP.get(size);
+  return (
+    <div className={clsx('flex', CLASSNAME_BY_SIZE, className)} {...props}>
+      {children}
+    </div>
+  );
+};
+
+ShortPitchCard.MetaData = function ({ className, children, ...props }: ComponentPropsWithoutRef<'div'>) {
+  return (
+    <div className={clsx('flex flex-1 flex-col', className)} {...props}>
+      {children}
+    </div>
+  );
+};
+
+type ShortPitchCardProps = ComponentPropsWithoutRef<'div'> & {
+  size: Size;
+};
+
+const SHORTPITCHCARD_SIZE_MAP = new Map<ShortPitchCardProps['size'], string>([
+  ['mini', 'w-358 h-98'],
+  ['small', 'w-296 h-213'],
+  ['medium', 'w-310 h-175'],
+]);
+
+export default function ShortPitchCard({ size, className, children, ...props }: ShortPitchCardProps) {
+  const SHORTPITCHCARD_SIZE_CLASSNAME = SHORTPITCHCARD_SIZE_MAP.get(size);
+  return (
+    <div className={clsx('rounded-8 flex flex-col', SHORTPITCHCARD_SIZE_CLASSNAME, className)} {...props}>
+      {children}
+    </div>
+  );
 }
