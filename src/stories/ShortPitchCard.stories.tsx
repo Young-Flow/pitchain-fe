@@ -32,12 +32,12 @@ export const Medium: Story = {
 
 export const Small: Story = {
   render: () => (
-    <ShortPitchCard size="medium">
-      <ShortPitchCard.Thumbnail src="https://picsum.photos/200/300" size="medium" />
-      <ShortPitchCard.Description size="medium">
+    <ShortPitchCard size="small">
+      <ShortPitchCard.Thumbnail src="https://picsum.photos/200/300" size="small" />
+      <ShortPitchCard.Description size="small">
         <ShortPitchCard.Logo src="https://picsum.photos/40" />
         <ShortPitchCard.MetaData>
-          <ShortPitchCard.Title>엄청 멋진 제목</ShortPitchCard.Title>
+          <ShortPitchCard.Title>엄청 멋진 제목이 두줄까지 갈 수 있어요. 이렇게 긴 제목도요</ShortPitchCard.Title>
         </ShortPitchCard.MetaData>
       </ShortPitchCard.Description>
     </ShortPitchCard>
