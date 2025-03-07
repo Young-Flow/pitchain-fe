@@ -1,8 +1,8 @@
 import { LayoutDirection } from './ShortPitchTypes';
 
 export const CONTAINER_STYLES_BY_LAYOUT_DIRECTION = new Map<LayoutDirection, string>([
-  ['vertical', 'flex-col'],
-  ['horizontal', ''],
+  ['vertical', 'flex-col w-310'],
+  ['horizontal', 'h-98'],
 ]);
 
 export const THUMBNAIL_STYLES_BY_LAYOUT_DIRECTION = new Map<LayoutDirection, string>([
