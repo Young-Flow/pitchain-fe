@@ -27,7 +27,7 @@ ShortPitchCard.Title = function ({ size, className, children, ...props }: TitleP
   );
 };
 
-ShortPitchCard.Label = function ({ className, children, ...props }: ComponentPropsWithoutRef<'span'>) {
+ShortPitchCard.MetaDataLine = function ({ className, children, ...props }: ComponentPropsWithoutRef<'span'>) {
   return (
     <div className={clsx('label1 text-neutral-500', className)} {...props}>
       {children}

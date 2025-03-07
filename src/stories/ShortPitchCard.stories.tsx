@@ -21,8 +21,8 @@ export const Medium: Story = {
         <ShortPitchCard.MetaData>
           <ShortPitchCard.Title size="large">엄청 멋진 제목</ShortPitchCard.Title>
           <div className="flex justify-between">
-            <ShortPitchCard.Label>피트체인 회사</ShortPitchCard.Label>
-            <ShortPitchCard.Label>조회수 20만회</ShortPitchCard.Label>
+            <ShortPitchCard.MetaDataLine>피트체인 회사</ShortPitchCard.MetaDataLine>
+            <ShortPitchCard.MetaDataLine>조회수 20만회</ShortPitchCard.MetaDataLine>
           </div>
         </ShortPitchCard.MetaData>
       </ShortPitchCard.Description>
@@ -56,8 +56,8 @@ export const Mini: Story = {
           <ShortPitchCard.Title size="small">
             엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목
           </ShortPitchCard.Title>
-          <ShortPitchCard.Label>피트체인 회사</ShortPitchCard.Label>
-          <ShortPitchCard.Label>조회수 20만회</ShortPitchCard.Label>
+          <ShortPitchCard.MetaDataLine>피트체인 회사</ShortPitchCard.MetaDataLine>
+          <ShortPitchCard.MetaDataLine>조회수 20만회</ShortPitchCard.MetaDataLine>
         </ShortPitchCard.MetaData>
       </ShortPitchCard.Description>
     </ShortPitchCard>
