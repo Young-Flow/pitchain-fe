@@ -11,6 +11,7 @@
       "@components/*": ["src/components/*"],
       "@widgets/*": ["src/widgets/*"],
       "@pages/*": ["src/pages/*"],
+      "@apis/*": ["src/apis/*"],
     }
   }
 }

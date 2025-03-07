@@ -6,7 +6,7 @@ export default function SignLayout() {
   const { pathname } = useLocation();
 
   return (
-    <main className="mx-auto flex w-424 flex-col items-center justify-center gap-36 p-12">
+    <main className="fixed top-1/2 left-1/2 flex w-424 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-36 p-12">
       <Logo className="h-110 w-340" />
 
       <div className="flex w-full flex-col gap-12">

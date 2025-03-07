@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
 export class Fetcher {
   private instance: AxiosInstance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+    baseURL: import.meta.env.VITE_BASE_URL,
     timeout: 5 * 1000,
     withCredentials: true,
   });

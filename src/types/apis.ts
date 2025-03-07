@@ -753,6 +753,7 @@ export interface components {
     CreateCompanyReq: {
       email?: string;
       password?: string;
+      passwordConfirmation?: string;
     };
     LoginCompanyReq: {
       email?: string;
@@ -1101,11 +1102,9 @@ export interface operations {
       path?: never;
       cookie?: never;
     };
-    requestBody?: {
+    requestBody: {
       content: {
-        'multipart/form-data': {
-          req: components['schemas']['CreateCompanyReq'];
-        };
+        'application/json': components['schemas']['CreateCompanyReq'];
       };
     };
     responses: {

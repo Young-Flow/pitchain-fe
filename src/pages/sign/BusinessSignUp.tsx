@@ -1,6 +1,7 @@
 import Clickable from '@components/Clickable/Clickable';
 import Form from '@components/Form';
 import { BUSINESS_SIGN_ARRAY, SignValidate } from '@constants/Sign';
+import { useSignMutator } from '@hooks/useMutator/useSignMutator';
 import { CreateForm } from 'sicilian';
 import { For } from 'utilinent';
 
@@ -8,16 +9,18 @@ const { register, getErrors, handleSubmit } = new CreateForm({
   initValue: {
     email: '',
     password: '',
-    passwordCheck: '',
+    passwordConfirmation: '',
   },
   validator: SignValidate(),
   validateOn: ['blur'],
-  clearFormOn: ['routeChange'],
+  clearFormOn: ['routeChange', 'submit'],
 });
 
 export default function BusinessSignUp() {
+  const { signUpMutate } = useSignMutator();
+
   return (
-    <Form className="flex flex-col gap-20" onSubmit={handleSubmit((data) => console.log(data))}>
+    <Form className="flex flex-col gap-20" onSubmit={handleSubmit((data) => signUpMutate(data))}>
       <For each={BUSINESS_SIGN_ARRAY}>
         {({ name, text, placeholder }) => (
           <div className="flex flex-col gap-4" key={name}>

@@ -3,6 +3,7 @@ import Form from '@components/Form';
 import { BUSINESS_SIGN_ARRAY, SignValidate } from '@constants/Sign';
 import { CreateForm } from 'sicilian';
 import { For } from 'utilinent';
+import { useSignMutator } from '@hooks/useMutator/useSignMutator';
 
 const { register, getErrors, handleSubmit } = new CreateForm({
   initValue: {
@@ -11,12 +12,14 @@ const { register, getErrors, handleSubmit } = new CreateForm({
   },
   validator: SignValidate(),
   validateOn: ['blur'],
-  clearFormOn: ['routeChange'],
+  clearFormOn: ['routeChange', 'submit'],
 });
 
 export default function BusinessSignIn() {
+  const { signInMutate } = useSignMutator();
+
   return (
-    <Form className="flex flex-col gap-20" onSubmit={handleSubmit((data) => console.log(data))}>
+    <Form className="flex flex-col gap-20" onSubmit={handleSubmit((data) => signInMutate(data))}>
       <For each={BUSINESS_SIGN_ARRAY.slice(0, -1)}>
         {({ name, text, placeholder }) => (
           <div className="flex flex-col gap-4" key={name}>
