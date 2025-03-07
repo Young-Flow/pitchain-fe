@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react';
 
-export type Size = 'mini' | 'small' | 'medium';
+export type Size = 'small' | 'medium' | 'large';
 
 export type ThumbnailProps = ComponentPropsWithoutRef<'img'> & {
   size: Size;
