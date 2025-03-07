@@ -16,6 +16,12 @@ export const SOCIAL_LOGIN_ARRAY = [
   },
 ];
 
+export const BUSINESS_SIGN_ARRAY = [
+  { name: 'email' as const, text: '이메일', placeholder: '이메일을 입력해주세요' },
+  { name: 'password' as const, text: '비밀번호', placeholder: '비밀번호를 입력해주세요' },
+  { name: 'passwordCheck' as const, text: '비밀번호 확인', placeholder: '비밀번호를 다시 한 번 입력해주세요' },
+];
+
 export const SignValidate = () => {
   const email = {
     required: { required: true, message: '이메일을 입력해주세요' },
