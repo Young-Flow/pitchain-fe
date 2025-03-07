@@ -6,6 +6,10 @@ export type ThumbnailProps = ComponentPropsWithoutRef<'img'> & {
   size: Size;
 };
 
+export type TitleProps = ComponentPropsWithoutRef<'div'> & {
+  size: Size;
+};
+
 export type DescriptionProps = ComponentPropsWithoutRef<'div'> & {
   size: Size;
 };
