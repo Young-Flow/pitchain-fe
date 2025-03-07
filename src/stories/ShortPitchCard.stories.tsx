@@ -12,54 +12,43 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof ShortPitchCard>;
 
-export const Medium: Story = {
+export const Vertical: Story = {
   render: () => (
-    <ShortPitchCard size="large">
-      <ShortPitchCard.Thumbnail src="https://picsum.photos/200/300" size="large" />
-      <ShortPitchCard.Description size="large">
-        <ShortPitchCard.Logo src="https://picsum.photos/40" />
-        <ShortPitchCard.MetaData>
-          <ShortPitchCard.Title size="large">엄청 멋진 제목</ShortPitchCard.Title>
-          <div className="flex justify-between">
-            <ShortPitchCard.MetaDataLine>피트체인 회사</ShortPitchCard.MetaDataLine>
-            <ShortPitchCard.MetaDataLine>조회수 20만회</ShortPitchCard.MetaDataLine>
-          </div>
-        </ShortPitchCard.MetaData>
-      </ShortPitchCard.Description>
+    <ShortPitchCard layoutDirection="vertical">
+      <ShortPitchCard.Container className="h-auto w-310">
+        <ShortPitchCard.Thumbnail src="https://picsum.photos/300/200" />
+        <ShortPitchCard.Description>
+          <ShortPitchCard.Logo src="https://picsum.photos/40" />
+          <ShortPitchCard.MetaData>
+            <ShortPitchCard.Title>엄청 멋진 제목</ShortPitchCard.Title>
+            <div className="flex justify-between">
+              <ShortPitchCard.MetaDataLine>피트체인 회사</ShortPitchCard.MetaDataLine>
+              <ShortPitchCard.MetaDataLine>조회수 20만회</ShortPitchCard.MetaDataLine>
+            </div>
+          </ShortPitchCard.MetaData>
+        </ShortPitchCard.Description>
+      </ShortPitchCard.Container>
     </ShortPitchCard>
   ),
 };
 
-export const Small: Story = {
+export const Horizontal: Story = {
   render: () => (
-    <ShortPitchCard size="medium">
-      <ShortPitchCard.Thumbnail src="https://picsum.photos/200/300" size="medium" />
-      <ShortPitchCard.Description size="medium">
-        <ShortPitchCard.Logo src="https://picsum.photos/40" />
-        <ShortPitchCard.MetaData>
-          <ShortPitchCard.Title size="medium">
-            엄청 멋진 제목이 두줄까지 갈 수 있어요. 이렇게 긴 제목도요. 엄청 멋진 제목이 두줄까지 갈 수 있어요. 이렇게
-            긴 제목도요
-          </ShortPitchCard.Title>
-        </ShortPitchCard.MetaData>
-      </ShortPitchCard.Description>
-    </ShortPitchCard>
-  ),
-};
-
-export const Mini: Story = {
-  render: () => (
-    <ShortPitchCard size="small">
-      <ShortPitchCard.Thumbnail src="https://picsum.photos/200/300" size="small" />
-      <ShortPitchCard.Description size="small">
-        <ShortPitchCard.MetaData>
-          <ShortPitchCard.Title size="small">
-            엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목
-          </ShortPitchCard.Title>
-          <ShortPitchCard.MetaDataLine>피트체인 회사</ShortPitchCard.MetaDataLine>
-          <ShortPitchCard.MetaDataLine>조회수 20만회</ShortPitchCard.MetaDataLine>
-        </ShortPitchCard.MetaData>
-      </ShortPitchCard.Description>
-    </ShortPitchCard>
+    <div className="w-358">
+      <ShortPitchCard layoutDirection="horizontal">
+        <ShortPitchCard.Container className="h-98">
+          <ShortPitchCard.Thumbnail src="https://picsum.photos/300/200" />
+          <ShortPitchCard.Description>
+            <ShortPitchCard.MetaData>
+              <ShortPitchCard.Title>
+                엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목
+              </ShortPitchCard.Title>
+              <ShortPitchCard.MetaDataLine>피트체인 회사</ShortPitchCard.MetaDataLine>
+              <ShortPitchCard.MetaDataLine>조회수 20만회</ShortPitchCard.MetaDataLine>
+            </ShortPitchCard.MetaData>
+          </ShortPitchCard.Description>
+        </ShortPitchCard.Container>
+      </ShortPitchCard>
+    </div>
   ),
 };

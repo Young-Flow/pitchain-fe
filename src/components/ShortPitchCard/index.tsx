@@ -28,7 +28,11 @@ ShortPitchCard.Thumbnail = function Thumbnail({ className, ...props }: Component
   const layoutDirection = useContext<LayoutDirection>(DirectionContext);
   const CLASSNAME_BY_LAYOUT_DIRECTION = THUMBNAIL_STYLES_BY_LAYOUT_DIRECTION.get(layoutDirection);
   return (
-    <img className={clsx('w-full', CLASSNAME_BY_LAYOUT_DIRECTION, className)} alt="video card thumbnail" {...props} />
+    <img
+      className={clsx('aspect-video object-cover', CLASSNAME_BY_LAYOUT_DIRECTION, className)}
+      alt="video card thumbnail"
+      {...props}
+    />
   );
 };
 
