@@ -1,19 +1,8 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ReactNode } from 'react';
 
-export type Size = 'small' | 'medium' | 'large';
-
-export type ThumbnailProps = ComponentPropsWithoutRef<'img'> & {
-  size: Size;
+export type ShortPitchCardProps = {
+  layoutDirection: LayoutDirection;
+  children: ReactNode;
 };
 
-export type TitleProps = ComponentPropsWithoutRef<'div'> & {
-  size: Size;
-};
-
-export type DescriptionProps = ComponentPropsWithoutRef<'div'> & {
-  size: Size;
-};
-
-export type ShortPitchCardProps = ComponentPropsWithoutRef<'div'> & {
-  size: Size;
-};
+export type LayoutDirection = 'vertical' | 'horizontal';

@@ -1,44 +1,46 @@
 import Avatar from '@components/Avatar';
 import clsx from 'clsx';
-import { ComponentPropsWithoutRef } from 'react';
-import { ThumbnailProps, TitleProps, DescriptionProps, ShortPitchCardProps } from './ShortPitchTypes';
+import { ComponentPropsWithoutRef, createContext, useContext } from 'react';
+import { LayoutDirection, ShortPitchCardProps } from './ShortPitchTypes';
 import {
-  THUMBNAIL_STYLES_BY_SIZE,
-  TITLE_STYLES_BY_SIZE,
-  DESCRIPTION_STYLES_BY_SIZE,
-  CONTAINER_STYLES_BY_SIZE,
+  CONTAINER_STYLES_BY_LAYOUT_DIRECTION,
+  THUMBNAIL_STYLES_BY_LAYOUT_DIRECTION,
+  DESCRIPTION_STYLES_BY_LAYOUT_DIRECTION,
 } from './ShortPitchCardconstants';
 
-ShortPitchCard.Thumbnail = function ({ size, className, ...props }: ThumbnailProps) {
-  const CLASSNAME_BY_SIZE = THUMBNAIL_STYLES_BY_SIZE.get(size);
-  return <img className={clsx(CLASSNAME_BY_SIZE, 'shrink-0', className)} alt="video card thumbnail" {...props} />;
+const DirectionContext = createContext<LayoutDirection>('vertical');
+
+export default function ShortPitchCard({ layoutDirection, children }: ShortPitchCardProps) {
+  return <DirectionContext.Provider value={layoutDirection}>{children}</DirectionContext.Provider>;
+}
+
+ShortPitchCard.Container = function Container({ className, children, ...props }: ComponentPropsWithoutRef<'div'>) {
+  const layoutDirection = useContext<LayoutDirection>(DirectionContext);
+  const CLASSNAME_BY_LAYOUT_DIRECTION = CONTAINER_STYLES_BY_LAYOUT_DIRECTION.get(layoutDirection);
+  return (
+    <div className={clsx('flex', CLASSNAME_BY_LAYOUT_DIRECTION, className)} {...props}>
+      {children}
+    </div>
+  );
+};
+
+ShortPitchCard.Thumbnail = function Thumbnail({ className, ...props }: ComponentPropsWithoutRef<'img'>) {
+  const layoutDirection = useContext<LayoutDirection>(DirectionContext);
+  const CLASSNAME_BY_LAYOUT_DIRECTION = THUMBNAIL_STYLES_BY_LAYOUT_DIRECTION.get(layoutDirection);
+  return (
+    <img className={clsx('w-full', CLASSNAME_BY_LAYOUT_DIRECTION, className)} alt="video card thumbnail" {...props} />
+  );
 };
 
 ShortPitchCard.Logo = function ({ ...props }: ComponentPropsWithoutRef<'img'>) {
   return <Avatar size="medium" {...props} />;
 };
 
-ShortPitchCard.Title = function ({ size, className, children, ...props }: TitleProps) {
-  const CLASSNAME_BY_SIZE = TITLE_STYLES_BY_SIZE.get(size);
+ShortPitchCard.Description = function Description({ className, children, ...props }: ComponentPropsWithoutRef<'div'>) {
+  const layoutDirection = useContext<LayoutDirection>(DirectionContext);
+  const CLASSNAME_BY_LAYOUT_DIRECTION = DESCRIPTION_STYLES_BY_LAYOUT_DIRECTION.get(layoutDirection);
   return (
-    <div className={clsx(CLASSNAME_BY_SIZE, 'heading7 w-full', className)} {...props}>
-      {children}
-    </div>
-  );
-};
-
-ShortPitchCard.MetaDataLine = function ({ className, children, ...props }: ComponentPropsWithoutRef<'span'>) {
-  return (
-    <div className={clsx('label1 text-neutral-500', className)} {...props}>
-      {children}
-    </div>
-  );
-};
-
-ShortPitchCard.Description = function ({ size, className, children, ...props }: DescriptionProps) {
-  const CLASSNAME_BY_SIZE = DESCRIPTION_STYLES_BY_SIZE.get(size);
-  return (
-    <div className={clsx('flex', CLASSNAME_BY_SIZE, className)} {...props}>
+    <div className={clsx('flex', CLASSNAME_BY_LAYOUT_DIRECTION, className)} {...props}>
       {children}
     </div>
   );
@@ -52,11 +54,18 @@ ShortPitchCard.MetaData = function ({ className, children, ...props }: Component
   );
 };
 
-export default function ShortPitchCard({ size, className, children, ...props }: ShortPitchCardProps) {
-  const CLASSNAME_BY_SIZE = CONTAINER_STYLES_BY_SIZE.get(size);
+ShortPitchCard.Title = function ({ className, children, ...props }: ComponentPropsWithoutRef<'div'>) {
   return (
-    <div className={clsx('flex', CLASSNAME_BY_SIZE, className)} {...props}>
+    <div className={clsx('heading7 w-full', className)} {...props}>
       {children}
     </div>
   );
-}
+};
+
+ShortPitchCard.MetaDataLine = function ({ className, children, ...props }: ComponentPropsWithoutRef<'span'>) {
+  return (
+    <div className={clsx('label1 text-neutral-500', className)} {...props}>
+      {children}
+    </div>
+  );
+};
