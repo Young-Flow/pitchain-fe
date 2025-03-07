@@ -44,7 +44,7 @@ ShortPitchCard.Description = function Description({ className, children, ...prop
   const layoutDirection = useContext<LayoutDirection>(DirectionContext);
   const CLASSNAME_BY_LAYOUT_DIRECTION = DESCRIPTION_STYLES_BY_LAYOUT_DIRECTION.get(layoutDirection);
   return (
-    <div className={clsx('flex', CLASSNAME_BY_LAYOUT_DIRECTION, className)} {...props}>
+    <div className={clsx('flex gap-8', CLASSNAME_BY_LAYOUT_DIRECTION, className)} {...props}>
       {children}
     </div>
   );
@@ -66,7 +66,7 @@ ShortPitchCard.Title = function ({ className, children, ...props }: ComponentPro
   );
 };
 
-ShortPitchCard.MetaDataLine = function ({ className, children, ...props }: ComponentPropsWithoutRef<'span'>) {
+ShortPitchCard.MetaDataLine = function ({ className, children, ...props }: ComponentPropsWithoutRef<'div'>) {
   return (
     <div className={clsx('label1 text-neutral-500', className)} {...props}>
       {children}

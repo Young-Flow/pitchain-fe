@@ -15,7 +15,7 @@ type Story = StoryObj<typeof ShortPitchCard>;
 export const Vertical: Story = {
   render: () => (
     <ShortPitchCard layoutDirection="vertical">
-      <ShortPitchCard.Container className="h-auto w-310">
+      <ShortPitchCard.Container className="w-310">
         <ShortPitchCard.Thumbnail src="https://picsum.photos/300/200" />
         <ShortPitchCard.Description>
           <ShortPitchCard.Logo src="https://picsum.photos/40" />
@@ -34,13 +34,13 @@ export const Vertical: Story = {
 
 export const Horizontal: Story = {
   render: () => (
-    <div className="w-358">
+    <div className="w-658">
       <ShortPitchCard layoutDirection="horizontal">
         <ShortPitchCard.Container className="h-98">
           <ShortPitchCard.Thumbnail src="https://picsum.photos/300/200" />
           <ShortPitchCard.Description>
             <ShortPitchCard.MetaData>
-              <ShortPitchCard.Title>
+              <ShortPitchCard.Title className="line-clamp-2">
                 엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목엄청 멋진 제목
               </ShortPitchCard.Title>
               <ShortPitchCard.MetaDataLine>피트체인 회사</ShortPitchCard.MetaDataLine>
