@@ -2,11 +2,7 @@ import Avatar from '@components/Avatar';
 import clsx from 'clsx';
 import { ComponentPropsWithoutRef, createContext, useContext } from 'react';
 import { LayoutDirection, ShortPitchCardProps } from './ShortPitchTypes';
-import {
-  CONTAINER_STYLES_BY_LAYOUT_DIRECTION,
-  THUMBNAIL_STYLES_BY_LAYOUT_DIRECTION,
-  DESCRIPTION_STYLES_BY_LAYOUT_DIRECTION,
-} from './ShortPitchCardconstants';
+import { CONTAINER_STYLES_BY_LAYOUT_DIRECTION, THUMBNAIL_STYLES_BY_LAYOUT_DIRECTION } from './ShortPitchCardconstants';
 
 const DirectionContext = createContext<LayoutDirection>('vertical');
 
@@ -18,7 +14,7 @@ ShortPitchCard.Container = function Container({ className, children, ...props }:
   const CONTAINER_DIRECTION = useContext<LayoutDirection>(DirectionContext);
   const CLASSNAME_BY_LAYOUT_DIRECTION = CONTAINER_STYLES_BY_LAYOUT_DIRECTION.get(CONTAINER_DIRECTION);
   return (
-    <div className={clsx('flex', CLASSNAME_BY_LAYOUT_DIRECTION, className)} {...props}>
+    <div className={clsx('flex gap-8', CLASSNAME_BY_LAYOUT_DIRECTION, className)} {...props}>
       {children}
     </div>
   );
@@ -36,11 +32,9 @@ ShortPitchCard.Thumbnail = function Thumbnail({ className, ...props }: Component
   );
 };
 
-ShortPitchCard.Description = function Description({ className, children, ...props }: ComponentPropsWithoutRef<'div'>) {
-  const CONTAINER_DIRECTION = useContext<LayoutDirection>(DirectionContext);
-  const CLASSNAME_BY_LAYOUT_DIRECTION = DESCRIPTION_STYLES_BY_LAYOUT_DIRECTION.get(CONTAINER_DIRECTION);
+ShortPitchCard.Description = function ({ className, children, ...props }: ComponentPropsWithoutRef<'div'>) {
   return (
-    <div className={clsx('flex gap-8', CLASSNAME_BY_LAYOUT_DIRECTION, className)} {...props}>
+    <div className={clsx('flex gap-8', className)} {...props}>
       {children}
     </div>
   );
