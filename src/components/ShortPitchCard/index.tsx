@@ -15,8 +15,8 @@ export default function ShortPitchCard({ layoutDirection, children }: ShortPitch
 }
 
 ShortPitchCard.Container = function Container({ className, children, ...props }: ComponentPropsWithoutRef<'div'>) {
-  const layoutDirection = useContext<LayoutDirection>(DirectionContext);
-  const CLASSNAME_BY_LAYOUT_DIRECTION = CONTAINER_STYLES_BY_LAYOUT_DIRECTION.get(layoutDirection);
+  const CONTAINER_DIRECTION = useContext<LayoutDirection>(DirectionContext);
+  const CLASSNAME_BY_LAYOUT_DIRECTION = CONTAINER_STYLES_BY_LAYOUT_DIRECTION.get(CONTAINER_DIRECTION);
   return (
     <div className={clsx('flex', CLASSNAME_BY_LAYOUT_DIRECTION, className)} {...props}>
       {children}
@@ -25,8 +25,8 @@ ShortPitchCard.Container = function Container({ className, children, ...props }:
 };
 
 ShortPitchCard.Thumbnail = function Thumbnail({ className, ...props }: ComponentPropsWithoutRef<'img'>) {
-  const layoutDirection = useContext<LayoutDirection>(DirectionContext);
-  const CLASSNAME_BY_LAYOUT_DIRECTION = THUMBNAIL_STYLES_BY_LAYOUT_DIRECTION.get(layoutDirection);
+  const CONTAINER_DIRECTION = useContext<LayoutDirection>(DirectionContext);
+  const CLASSNAME_BY_LAYOUT_DIRECTION = THUMBNAIL_STYLES_BY_LAYOUT_DIRECTION.get(CONTAINER_DIRECTION);
   return (
     <img
       className={clsx('aspect-video object-cover', CLASSNAME_BY_LAYOUT_DIRECTION, className)}
@@ -36,18 +36,18 @@ ShortPitchCard.Thumbnail = function Thumbnail({ className, ...props }: Component
   );
 };
 
-ShortPitchCard.Logo = function ({ ...props }: ComponentPropsWithoutRef<'img'>) {
-  return <Avatar size="medium" {...props} />;
-};
-
 ShortPitchCard.Description = function Description({ className, children, ...props }: ComponentPropsWithoutRef<'div'>) {
-  const layoutDirection = useContext<LayoutDirection>(DirectionContext);
-  const CLASSNAME_BY_LAYOUT_DIRECTION = DESCRIPTION_STYLES_BY_LAYOUT_DIRECTION.get(layoutDirection);
+  const CONTAINER_DIRECTION = useContext<LayoutDirection>(DirectionContext);
+  const CLASSNAME_BY_LAYOUT_DIRECTION = DESCRIPTION_STYLES_BY_LAYOUT_DIRECTION.get(CONTAINER_DIRECTION);
   return (
     <div className={clsx('flex gap-8', CLASSNAME_BY_LAYOUT_DIRECTION, className)} {...props}>
       {children}
     </div>
   );
+};
+
+ShortPitchCard.Logo = function ({ ...props }: ComponentPropsWithoutRef<'img'>) {
+  return <Avatar size="medium" {...props} />;
 };
 
 ShortPitchCard.MetaData = function ({ className, children, ...props }: ComponentPropsWithoutRef<'div'>) {
