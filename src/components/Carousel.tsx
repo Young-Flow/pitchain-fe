@@ -1,8 +1,7 @@
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider, { Settings } from 'react-slick';
-import { createContext, useContext, useRef, RefObject, ComponentProps } from 'react';
-import Clickable from '@components/Clickable/Clickable';
+import { createContext, useContext, useRef, RefObject, ComponentProps, MouseEvent } from 'react';
 
 const sliderRefContext = createContext<RefObject<Slider | null> | null>(null);
 
@@ -20,11 +19,32 @@ export default function Carousel({ ...props }: Settings) {
   );
 }
 
-Carousel.LeftButton = function LeftButton({ children, ...props }: ComponentProps<'button'>) {
+Carousel.LeftButton = function LeftButton({ children, onClick, ...props }: ComponentProps<'button'>) {
   const sliderRef = useContext(sliderRefContext);
-  function handleClick() {
-    if (sliderRef === null) return;
-    sliderRef.current.slickPrev();
+  function handleClick(e: MouseEvent<HTMLButtonElement>) {
+    const currentSlider = sliderRef?.current;
+    if (onClick) onClick(e);
+    if (!currentSlider || e.defaultPrevented) return;
+    currentSlider.slickPrev();
   }
-  return <Clickable {...props}>{children}</Clickable>;
+  return (
+    <button onClick={handleClick} {...props}>
+      {children}
+    </button>
+  );
+};
+
+Carousel.RightButton = function RightButton({ children, onClick, ...props }: ComponentProps<'button'>) {
+  const sliderRef = useContext(sliderRefContext);
+  function handleClick(e: MouseEvent<HTMLButtonElement>) {
+    const currentSlider = sliderRef?.current;
+    if (!currentSlider || e.defaultPrevented) return;
+    currentSlider.slickNext();
+    if (onClick) onClick(e);
+  }
+  return (
+    <button onClick={handleClick} {...props}>
+      {children}
+    </button>
+  );
 };
