@@ -5,7 +5,6 @@ import { createContext, useContext, useRef, RefObject, ComponentProps, MouseEven
 
 const sliderRefContext = createContext<RefObject<Slider | null> | null>(null);
 
-//TODO: 버튼 배경, 버튼 컴포넌트 작성
 //TODO: Nav 컴포넌트 작성
 export default function Carousel({ ...props }: Settings) {
   const sliderRef = useRef<Slider | null>(null);
