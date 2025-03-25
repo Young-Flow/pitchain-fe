@@ -7,6 +7,6 @@ export class AuthQuery extends Query {
   getUser = () =>
     this.queryOptions({
       queryKey: [...this.queryKey, 'user'],
-      queryFn: () => this.queryFn<paths['/oauth2/login']['post']['responses']['COMMON200']['content']>('user'),
+      queryFn: () => this.queryFn<paths['/members']['get']['responses']['200']['content']['*/*']['data']>('user'),
     });
 }

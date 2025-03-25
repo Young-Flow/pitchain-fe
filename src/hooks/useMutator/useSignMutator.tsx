@@ -7,6 +7,7 @@ export const useSignMutator = () => {
   const navigate = useNavigate();
   const { mutate: signInMutate } = useMutation(authMutation.postSignIn(navigate));
   const { mutate: signUpMutate } = useMutation(authMutation.postSignUp(navigate));
+  const { mutate: socialLoginMutate } = useMutation(authMutation.postSocialLogin(navigate));
 
-  return { signInMutate, signUpMutate };
+  return { signInMutate, signUpMutate, socialLoginMutate };
 };

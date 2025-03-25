@@ -23,22 +23,38 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/companies': {
+  '/members': {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
+    /** 나의 프로필 조회 */
+    get: operations['getMyProfile'];
     /**
-     * 회사 조회
-     * @description 회사 정보 수정 시 사용
+     * 나의 프로필 수정
+     * @description memberRole 입력 필수
      */
-    get: operations['getCompanyDetail'];
-    /** 회사 정보 수정 */
-    put: operations['updateCompany'];
-    /** 회사 회원가입 */
-    post: operations['createCompany'];
+    put: operations['updateMyProfile'];
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/members/profileImgs': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    /** 나의 프로필 이미지 수정 */
+    put: operations['updateProfileImg'];
+    post?: never;
     delete?: never;
     options?: never;
     head?: never;
@@ -55,44 +71,6 @@ export interface paths {
     get?: never;
     /** 회사 비밀번호 수정 */
     put: operations['updatePassword'];
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/companies/logoImgs': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    /** 회사 로고 이미지 수정 */
-    put: operations['updateLogoImg'];
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/companies/emails': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * 회사 이메일 중복 여부 확인
-     * @description 회사 생성 및 수정 시 사용, 중복이면 true 반환
-     */
-    get: operations['checkEmail'];
-    /** 회사 이메일 수정 */
-    put: operations['updateEmail'];
     post?: never;
     delete?: never;
     options?: never;
@@ -214,7 +192,7 @@ export interface paths {
     put?: never;
     /**
      * 소셜 로그인
-     * @description KAKAO: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=891063e7c569324189a0353dfb18c534&redirect_uri={redirectURL}을 통해 code값 받아오기, NAVER: https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=T4z00JRW0P38KpqrIc6w&redirect_uri={redirectURL}을 통해 code값 받아오기
+     * @description 각 Oauth 플랫폼의 endpoint를 통해 code값  조회 후 api 호출 <br>KAKAO: https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=891063e7c569324189a0353dfb18c534&redirect_uri=http://localhost:5173/sign/kakao/callback <br> NAVER: https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=T4z00JRW0P38KpqrIc6w&redirect_uri=http://localhost:5173/sign/naver/callback <br> GOOGLE: https://accounts.google.com/o/oauth2/v2/auth?client_id=811738095331-ogbk4dfq2bg5ojo6gf9u3oa4iob80glb.apps.googleusercontent.com&redirect_uri=http://localhost:5173/sign/google/callback&response_type=code&scope=email%20profile
      */
     post: operations['socialLogin'];
     delete?: never;
@@ -251,6 +229,40 @@ export interface paths {
     put?: never;
     /** MethodArgumentNotValidException 발생 */
     post: operations['methodArgumentNotValidTest'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/companies': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** 회사 회원가입 */
+    post: operations['createCompany'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/companies/verify': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** 회사 인증 */
+    post: operations['verifyCompany'];
     delete?: never;
     options?: never;
     head?: never;
@@ -359,14 +371,51 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/dev-token': {
+  '/members/tokens': {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    /** 토큰 발급 / 개발용 */
+    /** Access/Refresh Token 재발급 */
+    get: operations['reissueToken'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/members/emails': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * 회원 이메일 중복 여부 확인
+     * @description 회사 생성 및 수정 시 사용, 중복이면 true 반환
+     */
+    get: operations['checkEmail'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/dev/refresh-token': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Refresh Token 발급 / 개발용 / 3시간 이후 만료 */
     get: operations['token'];
     put?: never;
     post?: never;
@@ -376,15 +425,15 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/dev-model': {
+  '/dev/access-token': {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    /** AI 서버로 유저 선호도 정보 전송 / 개발용 */
-    get: operations['devAI'];
+    /** Access Token 발급 / 개발용 / 3시간 이후 만료 */
+    get: operations['issueAccessTokenWithoutExpiration'];
     put?: never;
     post?: never;
     delete?: never;
@@ -444,39 +493,6 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/currency': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get: operations['calculateExchangeRate'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/currency-test': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** 외부 API 호출 확인 / 개발용 */
-    get: operations['test'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
   '/bms/{bmId}/investment': {
     parameters: {
       query?: never;
@@ -527,23 +543,6 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/companies/{companyId}': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    post?: never;
-    /** 회사 탈퇴 */
-    delete: operations['deleteCompany'];
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -554,10 +553,20 @@ export interface components {
       message?: string;
       data?: Record<string, never>;
     };
-    UpdateCompanyReq: {
-      name?: string;
-      address?: string;
+    BaseUpdateMemberReq: {
+      /** @enum {string} */
+      memberRole: 'COMPANY' | 'INDIVIDUAL';
     };
+    UpdateCompanyReq: {
+      memberRole: 'UpdateCompanyReq';
+    } & (Omit<WithRequired<components['schemas']['BaseUpdateMemberReq'], 'memberRole'>, 'memberRole'> & {
+      address?: string;
+    });
+    UpdateIndividualReq: {
+      memberRole: 'UpdateIndividualReq';
+    } & (Omit<WithRequired<components['schemas']['BaseUpdateMemberReq'], 'memberRole'>, 'memberRole'> & {
+      name?: string;
+    });
     CustomApiResponseVoid: {
       isSuccess?: boolean;
       code?: string;
@@ -569,202 +578,9 @@ export interface components {
       newPassword?: string;
     };
     UpdateBmReq: {
-      name?: string;
-      /** @enum {string} */
-      mainCategory?:
-        | 'TECH_DIGITAL'
-        | 'COMMERCE_PLATFORM_COMMUNITY'
-        | 'FOOD'
-        | 'SPORTS_OUTDOOR'
-        | 'ENTERTAINMENT'
-        | 'HR_LEGAL_BUSINESS'
-        | 'MANUFACTURING_HARDWARE'
-        | 'COMMUNICATION_SECURITY_DATA'
-        | 'LIFESTYLE_LEISURE'
-        | 'SCIENCE_TECHNOLOGY'
-        | 'CREATION_CULTURE'
-        | 'TRANSPORTATION_MOBILITY'
-        | 'FINANCE_INSURANCE_FINTECH';
-      subCategories?: (
-        | 'AI_ML'
-        | 'SAAS'
-        | 'METAVERSE_CONTENT'
-        | 'APP_DEVELOPMENT'
-        | 'BLOCKCHAIN_WEB3'
-        | 'IT_HARDWARE_DEVICES'
-        | 'ECOMMERCE'
-        | 'RESALE'
-        | 'LOCAL_COMMUNITY_NETWORK'
-        | 'REVIEW_CURATION'
-        | 'LOCAL_FOOD'
-        | 'FOREIGN_FOOD'
-        | 'READY_MEAL_KIT'
-        | 'HEALTH_DIET'
-        | 'DESSERT_SNACKS'
-        | 'SAUCES_SEASONINGS'
-        | 'ALCOHOL'
-        | 'BEVERAGE_COFFEE'
-        | 'ESPORTS_PRODUCTS'
-        | 'CAMPING'
-        | 'HOME_TRAINING'
-        | 'HIKING'
-        | 'GOLF'
-        | 'RUNNING'
-        | 'FISHING'
-        | 'TENNIS'
-        | 'CYCLING'
-        | 'SPORTS_LESSON_TRAINING'
-        | 'ENTERTAINMENT_CONTENT'
-        | 'BOARD_GAMES_TPRG'
-        | 'ONLINE_GAMES'
-        | 'DIGITAL_GAMES'
-        | 'WEBTOONS_STORY_CONTENT'
-        | 'LIVE_PERFORMANCE'
-        | 'MUSIC'
-        | 'VIDEO'
-        | 'HR_SOLUTION'
-        | 'LABOR_MANAGEMENT'
-        | 'LEGAL_TECH'
-        | 'CONSULTING'
-        | 'REMOTE_WORK'
-        | 'PR_MARKETING'
-        | 'HIGH_TECH'
-        | 'MEDIUM_TECH'
-        | 'LOW_TECH'
-        | 'TRADITIONAL_CRAFT'
-        | 'NETWORK_COMMUNICATION'
-        | 'DATA_ANALYTICS'
-        | 'CYBER_SECURITY'
-        | 'LEISURE_TOURISM'
-        | 'BEAUTY_WELLNESS'
-        | 'HOME_LIVING'
-        | 'FASHION_CLOTHING'
-        | 'PETS'
-        | 'LODGING_RENTAL'
-        | 'LIFE_SCIENCE_BIOTECH'
-        | 'ENERGY_ENVIRONMENT_TECH'
-        | 'RND_LAB_SERVICES'
-        | 'ESG'
-        | 'INDUSTRIAL_DESIGN'
-        | 'ART_CRAFT'
-        | 'PUBLISHING_LITERATURE'
-        | 'PERFORMING_ARTS_EXHIBITION'
-        | 'CULTURAL_HERITAGE'
-        | 'RIDE_SHARING'
-        | 'ELECTRIC_VEHICLE_TECH'
-        | 'DRONES'
-        | 'DIGITAL_FINANCE_PAYMENTS'
-        | 'FINANCIAL_MANAGEMENT'
-        | 'INSURE_TECH'
-      )[];
-      intro?: string;
-      description?: string;
-      address?: string;
-      /** Format: int64 */
-      valuationCap?: number;
-      /** Format: int64 */
-      goalInvestment?: number;
-      /** Format: int32 */
-      maxIssuedShare?: number;
-      /** Format: date */
-      deadline?: string;
-      longPitchURL?: string;
-    };
-    BmDetailRes: {
-      /** Format: int64 */
-      companyId?: number;
-      companyLogoImgURL?: string;
-      companyName?: string;
-      companyAddress?: string;
-      /** Format: int64 */
-      bmId?: number;
-      bmName?: string;
-      intro?: string;
-      mainCategory?: string;
-      subCategories?: string[];
-      description?: string;
-      descImgURL?: string;
-      bmAddress?: string;
-      /** Format: date-time */
-      createdAt?: string;
-      longPitchURL?: string;
-      isScraped?: boolean;
-      /** Format: int64 */
-      scrapCnt?: number;
-      spURLs?: string[];
-      ptImgResList?: components['schemas']['PtImgRes'][];
-    };
-    CustomApiResponseBmDetailRes: {
-      isSuccess?: boolean;
-      code?: string;
-      message?: string;
-      data?: components['schemas']['BmDetailRes'];
-    };
-    PtImgRes: {
-      /** Format: int32 */
-      serialNum?: number;
-      imgURL?: string;
-    };
-    ModifyCommentReq: {
-      content?: string;
-    };
-    CreateSpReq: {
-      /** Format: int64 */
-      bmId?: number;
-      name?: string;
-    };
-    CustomApiResponseString: {
-      isSuccess?: boolean;
-      code?: string;
-      message?: string;
-      data?: string;
-    };
-    OauthLoginReq: {
-      /**
-       * @description 소셜 로그인 제공자
-       * @enum {string}
-       */
-      oauthProvider: 'KAKAO' | 'GOOGLE' | 'NAVER';
-      /** @description OAuth Provider Server로 부터 받은 인증 코드 */
-      code: string;
-    };
-    CustomApiResponseLoginRes: {
-      isSuccess?: boolean;
-      code?: string;
-      message?: string;
-      data?: components['schemas']['LoginRes'];
-    };
-    LoginRes: {
-      accessToken?: string;
-      refreshToken?: string;
-    };
-    SaveMySpHistoryReq: {
-      /** Format: int64 */
-      bmId: number;
-      /**
-       * Format: int32
-       * @description 사용자가 해당 BM의 SP를 시청한 시간(ms 단위)
-       */
-      viewTime?: number;
-    };
-    TestDto: {
       name: string;
-    };
-    CreateCompanyReq: {
-      email?: string;
-      password?: string;
-      passwordConfirmation?: string;
-    };
-    LoginCompanyReq: {
-      email?: string;
-      password?: string;
-    };
-    CreateBmReq: {
-      /** Format: int64 */
-      companyId?: number;
-      name?: string;
       /** @enum {string} */
-      mainCategory?:
+      mainCategory:
         | 'TECH_DIGITAL'
         | 'COMMERCE_PLATFORM_COMMUNITY'
         | 'FOOD'
@@ -850,17 +666,213 @@ export interface components {
         | 'FINANCIAL_MANAGEMENT'
         | 'INSURE_TECH'
       )[];
-      intro?: string;
-      description?: string;
-      address?: string;
+      intro: string;
+      description: string;
+      address: string;
       /** Format: int64 */
-      valuationCap?: number;
+      valuationCap: number;
       /** Format: int64 */
-      goalInvestment?: number;
+      goalInvestment: number;
       /** Format: int32 */
-      maxIssuedShare?: number;
+      maxIssuedShare: number;
       /** Format: date */
-      deadline?: string;
+      deadline: string;
+      longPitchURL?: string;
+    };
+    BmDetailRes: {
+      /** Format: int64 */
+      companyId: number;
+      companyProfileImgURL: string;
+      companyName: string;
+      companyAddress: string;
+      /** Format: int64 */
+      bmId: number;
+      bmName: string;
+      intro: string;
+      mainCategory: string;
+      subCategories: string[];
+      description: string;
+      descImgURL: string;
+      bmAddress: string;
+      /** Format: date-time */
+      createdAt: string;
+      longPitchURL: string;
+      isScraped: boolean;
+      /** Format: int64 */
+      scrapCnt: number;
+      spURLs?: string[];
+      ptImgResList?: components['schemas']['PtImgRes'][];
+    };
+    CustomApiResponseBmDetailRes: {
+      isSuccess?: boolean;
+      code?: string;
+      message?: string;
+      data?: components['schemas']['BmDetailRes'];
+    };
+    PtImgRes: {
+      /** Format: int32 */
+      serialNum?: number;
+      imgURL: string;
+    };
+    ModifyCommentReq: {
+      content: string;
+    };
+    CreateSpReq: {
+      /** Format: int64 */
+      bmId: number;
+      name: string;
+    };
+    CustomApiResponseString: {
+      isSuccess?: boolean;
+      code?: string;
+      message?: string;
+      data?: string;
+    };
+    OauthLoginReq: {
+      /**
+       * @description 소셜 로그인 제공자
+       * @enum {string}
+       */
+      oauthProvider: 'KAKAO' | 'GOOGLE' | 'NAVER';
+      /** @description OAuth Provider Server로 부터 받은 인증 코드 */
+      code: string;
+    };
+    CustomApiResponseLoginRes: {
+      isSuccess?: boolean;
+      code?: string;
+      message?: string;
+      data?: components['schemas']['LoginRes'];
+    };
+    LoginRes: {
+      accessToken: string;
+      refreshToken: string;
+    };
+    SaveMySpHistoryReq: {
+      /** Format: int64 */
+      bmId: number;
+      /**
+       * Format: int32
+       * @description 사용자가 해당 BM의 SP를 시청한 시간(ms 단위)
+       */
+      viewTime?: number;
+    };
+    TestDto: {
+      name: string;
+    };
+    CreateCompanyReq: {
+      email: string;
+      password: string;
+      passwordConfirmation: string;
+    };
+    VerifyCompanyReq: {
+      companyName: string;
+    };
+    LoginCompanyReq: {
+      email: string;
+      password: string;
+    };
+    CreateBmReq: {
+      /** Format: int64 */
+      companyId: number;
+      name: string;
+      /** @enum {string} */
+      mainCategory:
+        | 'TECH_DIGITAL'
+        | 'COMMERCE_PLATFORM_COMMUNITY'
+        | 'FOOD'
+        | 'SPORTS_OUTDOOR'
+        | 'ENTERTAINMENT'
+        | 'HR_LEGAL_BUSINESS'
+        | 'MANUFACTURING_HARDWARE'
+        | 'COMMUNICATION_SECURITY_DATA'
+        | 'LIFESTYLE_LEISURE'
+        | 'SCIENCE_TECHNOLOGY'
+        | 'CREATION_CULTURE'
+        | 'TRANSPORTATION_MOBILITY'
+        | 'FINANCE_INSURANCE_FINTECH';
+      subCategories: (
+        | 'AI_ML'
+        | 'SAAS'
+        | 'METAVERSE_CONTENT'
+        | 'APP_DEVELOPMENT'
+        | 'BLOCKCHAIN_WEB3'
+        | 'IT_HARDWARE_DEVICES'
+        | 'ECOMMERCE'
+        | 'RESALE'
+        | 'LOCAL_COMMUNITY_NETWORK'
+        | 'REVIEW_CURATION'
+        | 'LOCAL_FOOD'
+        | 'FOREIGN_FOOD'
+        | 'READY_MEAL_KIT'
+        | 'HEALTH_DIET'
+        | 'DESSERT_SNACKS'
+        | 'SAUCES_SEASONINGS'
+        | 'ALCOHOL'
+        | 'BEVERAGE_COFFEE'
+        | 'ESPORTS_PRODUCTS'
+        | 'CAMPING'
+        | 'HOME_TRAINING'
+        | 'HIKING'
+        | 'GOLF'
+        | 'RUNNING'
+        | 'FISHING'
+        | 'TENNIS'
+        | 'CYCLING'
+        | 'SPORTS_LESSON_TRAINING'
+        | 'ENTERTAINMENT_CONTENT'
+        | 'BOARD_GAMES_TPRG'
+        | 'ONLINE_GAMES'
+        | 'DIGITAL_GAMES'
+        | 'WEBTOONS_STORY_CONTENT'
+        | 'LIVE_PERFORMANCE'
+        | 'MUSIC'
+        | 'VIDEO'
+        | 'HR_SOLUTION'
+        | 'LABOR_MANAGEMENT'
+        | 'LEGAL_TECH'
+        | 'CONSULTING'
+        | 'REMOTE_WORK'
+        | 'PR_MARKETING'
+        | 'HIGH_TECH'
+        | 'MEDIUM_TECH'
+        | 'LOW_TECH'
+        | 'TRADITIONAL_CRAFT'
+        | 'NETWORK_COMMUNICATION'
+        | 'DATA_ANALYTICS'
+        | 'CYBER_SECURITY'
+        | 'LEISURE_TOURISM'
+        | 'BEAUTY_WELLNESS'
+        | 'HOME_LIVING'
+        | 'FASHION_CLOTHING'
+        | 'PETS'
+        | 'LODGING_RENTAL'
+        | 'LIFE_SCIENCE_BIOTECH'
+        | 'ENERGY_ENVIRONMENT_TECH'
+        | 'RND_LAB_SERVICES'
+        | 'ESG'
+        | 'INDUSTRIAL_DESIGN'
+        | 'ART_CRAFT'
+        | 'PUBLISHING_LITERATURE'
+        | 'PERFORMING_ARTS_EXHIBITION'
+        | 'CULTURAL_HERITAGE'
+        | 'RIDE_SHARING'
+        | 'ELECTRIC_VEHICLE_TECH'
+        | 'DRONES'
+        | 'DIGITAL_FINANCE_PAYMENTS'
+        | 'FINANCIAL_MANAGEMENT'
+        | 'INSURE_TECH'
+      )[];
+      intro: string;
+      description: string;
+      address: string;
+      /** Format: int64 */
+      valuationCap: number;
+      /** Format: int64 */
+      goalInvestment: number;
+      /** Format: int32 */
+      maxIssuedShare: number;
+      /** Format: date */
+      deadline: string;
       longPitchURL?: string;
     };
     AddInvestmentReq: {
@@ -876,7 +888,7 @@ export interface components {
     AddCommentReq: {
       /** Format: int64 */
       parentCommentId?: number;
-      content?: string;
+      content: string;
     };
     CustomApiResponseListSpDetailRes: {
       isSuccess?: boolean;
@@ -886,21 +898,21 @@ export interface components {
     };
     SpDetailRes: {
       /** Format: int64 */
-      bmId?: number;
-      bmName?: string;
-      companyLogoImgURL?: string;
-      companyName?: string;
-      companyAddress?: string;
-      spURL?: string;
-      thumbnailImgURL?: string;
+      bmId: number;
+      bmName: string;
+      companyProfileImgURL: string;
+      companyName: string;
+      companyAddress: string;
+      spURL: string;
+      thumbnailImgURL: string;
       /** Format: int32 */
-      views?: number;
-      name?: string;
-      mainCategory?: string;
-      subCategories?: string[];
-      isLiked?: boolean;
+      views: number;
+      name: string;
+      mainCategory: string;
+      subCategories: string[];
+      isLiked: boolean;
       /** Format: int64 */
-      likeCnt?: number;
+      likeCnt: number;
     };
     CustomApiResponseSpDetailRes: {
       isSuccess?: boolean;
@@ -915,22 +927,23 @@ export interface components {
       data?: components['schemas']['InfinityScrollResSpDetailRes'];
     };
     InfinityScrollResSpDetailRes: {
-      content?: components['schemas']['SpDetailRes'][];
+      content: components['schemas']['SpDetailRes'][];
       /** Format: int64 */
-      lastElementId?: number;
+      lastElementId: number;
+      hasNext: boolean;
     };
-    CompanyDetailRes: {
-      email?: string;
-      logoImgKey?: string;
-      name?: string;
-      address?: string;
-      isVerified?: boolean;
+    BaseMemberProfileRes: {
+      profileImgURL: string;
+      name: string;
+      email: string;
+      /** @enum {string} */
+      memberRole: 'COMPANY' | 'INDIVIDUAL';
     };
-    CustomApiResponseCompanyDetailRes: {
+    CustomApiResponseBaseMemberProfileRes: {
       isSuccess?: boolean;
       code?: string;
       message?: string;
-      data?: components['schemas']['CompanyDetailRes'];
+      data?: components['schemas']['BaseMemberProfileRes'];
     };
     CustomApiResponseBoolean: {
       isSuccess?: boolean;
@@ -940,9 +953,9 @@ export interface components {
     };
     BaseCommentRes: {
       /** Format: int64 */
-      commentId?: number;
+      commentId: number;
       delYN?: boolean;
-      replyComments?: components['schemas']['ReplyCommentRes'][];
+      replyComments: components['schemas']['ReplyCommentRes'][];
     };
     CustomApiResponseListBaseCommentRes: {
       isSuccess?: boolean;
@@ -952,17 +965,17 @@ export interface components {
     };
     ReplyCommentRes: {
       /** Format: int64 */
-      commentId?: number;
+      commentId: number;
       /** Format: int64 */
-      writerId?: number;
-      writerNickname?: string;
-      writerProfileImgURL?: string;
-      content?: string;
+      writerId: number;
+      writerName: string;
+      writerProfileImgURL: string;
+      content: string;
       delYN?: boolean;
       /** Format: date-time */
-      createdAt?: string;
+      createdAt: string;
       /** Format: date-time */
-      updatedAt?: string;
+      updatedAt: string;
     };
   };
   responses: never;
@@ -1004,7 +1017,7 @@ export interface operations {
       };
       cookie?: never;
     };
-    requestBody?: {
+    requestBody: {
       content: {
         'multipart/form-data': {
           name: string;
@@ -1049,7 +1062,7 @@ export interface operations {
       };
     };
   };
-  getCompanyDetail: {
+  getMyProfile: {
     parameters: {
       query?: never;
       header?: never;
@@ -1064,23 +1077,37 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': components['schemas']['CustomApiResponseCompanyDetailRes'];
+          '*/*': components['schemas']['CustomApiResponseBaseMemberProfileRes'];
+        };
+      };
+      /** @description 존재하지 않는 사용자입니다. */
+      MEMBER4041: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @default false */
+            isSuccess: boolean;
+            /** @default MEMBER4041 */
+            code: string;
+            /** @default 존재하지 않는 사용자입니다. */
+            message: string;
+          };
         };
       };
     };
   };
-  updateCompany: {
+  updateMyProfile: {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    requestBody?: {
+    requestBody: {
       content: {
-        'multipart/form-data': {
-          req: components['schemas']['UpdateCompanyReq'];
-        };
+        'application/json': components['schemas']['UpdateCompanyReq'] | components['schemas']['UpdateIndividualReq'];
       };
     };
     responses: {
@@ -1095,16 +1122,19 @@ export interface operations {
       };
     };
   };
-  createCompany: {
+  updateProfileImg: {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    requestBody: {
+    requestBody?: {
       content: {
-        'application/json': components['schemas']['CreateCompanyReq'];
+        'application/json': {
+          /** Format: binary */
+          profileImg: string;
+        };
       };
     };
     responses: {
@@ -1129,79 +1159,6 @@ export interface operations {
     requestBody: {
       content: {
         'application/json': components['schemas']['UpdatePasswordReq'];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['CustomApiResponseVoid'];
-        };
-      };
-    };
-  };
-  updateLogoImg: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: {
-      content: {
-        'application/json': {
-          /** Format: binary */
-          logoImg: string;
-        };
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['CustomApiResponseVoid'];
-        };
-      };
-    };
-  };
-  checkEmail: {
-    parameters: {
-      query: {
-        email: string;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['CustomApiResponseBoolean'];
-        };
-      };
-    };
-  };
-  updateEmail: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        'application/json': string;
       };
     };
     responses: {
@@ -1280,7 +1237,7 @@ export interface operations {
     requestBody?: {
       content: {
         'multipart/form-data': {
-          ptImgs?: string[];
+          ptImgKeys?: string[];
         };
       };
     };
@@ -1400,9 +1357,9 @@ export interface operations {
         'multipart/form-data': {
           createSpReq: components['schemas']['CreateSpReq'];
           /** Format: binary */
-          spVideo?: string;
+          spVideo: string;
           /** Format: binary */
-          thumbnailImg?: string;
+          thumbnailImg: string;
         };
       };
     };
@@ -1443,13 +1400,7 @@ export interface operations {
   uploadFile: {
     parameters: {
       query: {
-        s3UploadTarget:
-          | 'COMPANY_DESC'
-          | 'COMPANY_LOGO'
-          | 'COMPANY_PT'
-          | 'COMPANY_THUMBNAIL'
-          | 'COMPANY_VIDEO'
-          | 'MEMBER_PROFILE';
+        s3UploadTarget: 'COMPANY_DESC' | 'COMPANY_PT' | 'COMPANY_THUMBNAIL' | 'COMPANY_VIDEO' | 'MEMBER_PROFILE';
       };
       header?: never;
       path?: never;
@@ -1512,17 +1463,8 @@ export interface operations {
       };
     };
     responses: {
-      /** @description 처리할 수 없는 소셜 로그인 */
-      COMMON400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['CustomApiResponseLoginRes'];
-        };
-      };
-      /** @description 로그인 성공 */
-      COMMON200: {
+      /** @description OK */
+      200: {
         headers: {
           [name: string]: unknown;
         };
@@ -1576,6 +1518,54 @@ export interface operations {
         };
         content: {
           '*/*': components['schemas']['CustomApiResponseString'];
+        };
+      };
+    };
+  };
+  createCompany: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['CreateCompanyReq'];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['CustomApiResponseVoid'];
+        };
+      };
+    };
+  };
+  verifyCompany: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['VerifyCompanyReq'];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['CustomApiResponseVoid'];
         };
       };
     };
@@ -1730,8 +1720,8 @@ export interface operations {
   };
   getSpDetailsFilteredCategory: {
     parameters: {
-      query: {
-        mainCategoryInKorean: string;
+      query?: {
+        mainCategoryInKorean?: string;
         lastSpId?: number;
         size?: number;
       };
@@ -1752,10 +1742,55 @@ export interface operations {
       };
     };
   };
+  reissueToken: {
+    parameters: {
+      query: {
+        refreshToken: string;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['CustomApiResponseLoginRes'];
+        };
+      };
+    };
+  };
+  checkEmail: {
+    parameters: {
+      query: {
+        email: string;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['CustomApiResponseBoolean'];
+        };
+      };
+    };
+  };
   token: {
     parameters: {
       query: {
         id: number;
+        memberRole: 'COMPANY' | 'INDIVIDUAL';
       };
       header?: never;
       path?: never;
@@ -1774,9 +1809,12 @@ export interface operations {
       };
     };
   };
-  devAI: {
+  issueAccessTokenWithoutExpiration: {
     parameters: {
-      query?: never;
+      query: {
+        id: number;
+        memberRole: 'COMPANY' | 'INDIVIDUAL';
+      };
       header?: never;
       path?: never;
       cookie?: never;
@@ -1789,7 +1827,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': string;
+          '*/*': components['schemas']['CustomApiResponseString'];
         };
       };
     };
@@ -1845,48 +1883,6 @@ export interface operations {
           [name: string]: unknown;
         };
         content?: never;
-      };
-    };
-  };
-  calculateExchangeRate: {
-    parameters: {
-      query: {
-        amount: number;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['CustomApiResponse'];
-        };
-      };
-    };
-  };
-  test: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['CustomApiResponse'];
-        };
       };
     };
   };
@@ -1956,24 +1952,7 @@ export interface operations {
       };
     };
   };
-  deleteCompany: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['CustomApiResponseVoid'];
-        };
-      };
-    };
-  };
 }
+type WithRequired<T, K extends keyof T> = T & {
+  [P in K]-?: T[P];
+};

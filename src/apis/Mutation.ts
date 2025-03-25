@@ -12,8 +12,8 @@ export abstract class Mutation extends Fetcher {
 
   mutationOptions = <
     TData = unknown,
-    TError = { code: number; message: string },
     TVariables = void,
+    TError = { code: number; message: string },
     TContext = unknown,
   >(
     options: UseMutationOptions<TData, TError, TVariables, TContext>,

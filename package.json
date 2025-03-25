@@ -11,7 +11,7 @@
     "prepare": "husky install",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build-types": "npx openapi-typescript https://api.pitchain.kro.kr/v3/api-docs -o src/types/apis.ts"
+    "build-types": "npx openapi-typescript https://api.pitchain.kro.kr/v3/api-docs -o src/types/apis.ts --required"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
