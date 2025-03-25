@@ -11,6 +11,7 @@ export class AuthMutation extends Mutation {
     >({
       mutationFn: (data) => this.mutationFn('/oauth2/login', 'post', data),
       onSuccess: (data) => {
+        if (!data) return;
         AuthToken.setToken(data);
         toast.success('로그인 성공');
         navigate('/');
@@ -27,6 +28,7 @@ export class AuthMutation extends Mutation {
     >({
       mutationFn: (data) => this.mutationFn('/companies/login', 'post', data),
       onSuccess: (data) => {
+        if (!data) return;
         AuthToken.setToken(data);
         toast.success('로그인 성공');
         navigate('/');
