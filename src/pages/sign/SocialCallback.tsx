@@ -14,7 +14,7 @@ export default function SocialCallback() {
     if (oauthProvider === 'KAKAO' || oauthProvider === 'NAVER' || oauthProvider === 'GOOGLE') {
       socialLoginMutate({
         oauthProvider,
-        code: code!,
+        code: code ?? '',
       });
     }
   }, []);

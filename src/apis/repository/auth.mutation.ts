@@ -11,6 +11,7 @@ export class AuthMutation extends Mutation {
     >({
       mutationFn: (data) => this.mutationFn('/oauth2/login', 'post', data),
       onSuccess: (data) => {
+        // TODO: 백엔드 Swagger 수정 필요
         if (!data) return;
         AuthToken.setToken(data);
         toast.success('로그인 성공');
@@ -28,6 +29,7 @@ export class AuthMutation extends Mutation {
     >({
       mutationFn: (data) => this.mutationFn('/companies/login', 'post', data),
       onSuccess: (data) => {
+        // TODO: 백엔드 Swagger 수정 필요
         if (!data) return;
         AuthToken.setToken(data);
         toast.success('로그인 성공');
