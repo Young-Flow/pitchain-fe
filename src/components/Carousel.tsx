@@ -47,3 +47,7 @@ Carousel.RightButton = function RightButton({ children, onClick, ...props }: Com
     </button>
   );
 };
+
+Carousel.NavList = function NavList({ children }: ComponentProps<'button'>) {
+  return <div>네비게이션</div>;
+};
