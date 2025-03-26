@@ -1,4 +1,5 @@
 import { ComponentPropsWithoutRef } from 'react';
+import clsx from 'clsx';
 
 type AvatarSize = 'small' | 'medium' | 'large' | 'xlarge';
 
@@ -6,15 +7,14 @@ type AvatarProps = ComponentPropsWithoutRef<'img'> & {
   size: AvatarSize;
 };
 
-const sizeMap = new Map<AvatarSize, number>([
-  ['small', 36],
-  ['medium', 40],
-  ['large', 48],
-  ['xlarge', 72],
+const AVATAR_SIZE_MAP = new Map<AvatarSize, string>([
+  ['small', 'size-36'],
+  ['medium', 'size-40'],
+  ['large', 'size-48'],
+  ['xlarge', 'size-72'],
 ]);
 
-export default function Avatar({ size, ...props }: AvatarProps) {
-  const sizeValue = sizeMap.get(size);
-  const sizeStyle = { width: sizeValue, height: sizeValue };
-  return <img style={sizeStyle} alt="avatar" {...props} />;
+export default function Avatar({ size, className, ...props }: AvatarProps) {
+  const AVATAR_SIZE_CLASSNAME = AVATAR_SIZE_MAP.get(size);
+  return <img className={clsx(AVATAR_SIZE_CLASSNAME, className)} alt="avatar" {...props} />;
 }
