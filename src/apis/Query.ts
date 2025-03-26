@@ -1,13 +1,17 @@
 import { InfiniteData, infiniteQueryOptions, QueryKey, queryOptions } from '@tanstack/react-query';
 import { Fetcher } from './Fetcher';
+import { AuthToken } from '@utils/Token';
 
 export abstract class Query extends Fetcher {
   abstract queryKey: QueryKey;
 
-  queryFn<T>(url: string) {
+  queryFn<T>(url: string, auth: boolean = false) {
     return this.doFetch<T>({
       method: 'get',
       url,
+      headers: {
+        Authorization: auth ? `Bearer ${AuthToken.getToken('accessToken')}` : undefined,
+      },
     });
   }
 
@@ -16,6 +20,9 @@ export abstract class Query extends Fetcher {
       this.doFetch<T>({
         method: 'get',
         url: `${url}&skip=${pageParam}`,
+        headers: {
+          Authorization: AuthToken.getToken('accessToken'),
+        },
       });
   }
 

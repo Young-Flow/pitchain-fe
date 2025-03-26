@@ -6,6 +6,8 @@ export const useAuthAdaptor = () => {
   const { data } = useQuery(authQuery.getUser());
 
   return {
+    isLogin: data?.email !== undefined,
+    isCompany: data?.memberRole === 'COMPANY',
     profileImgURL: data?.profileImgURL ?? '',
     name: data?.name ?? '',
     email: data?.email ?? '',
