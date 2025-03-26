@@ -15,13 +15,13 @@ export abstract class Query extends Fetcher {
     });
   }
 
-  infiniteQueryFn<T>(url: string) {
+  infiniteQueryFn<T>(url: string, auth: boolean = false) {
     return ({ pageParam }: { pageParam: number }) =>
       this.doFetch<T>({
         method: 'get',
         url: `${url}&skip=${pageParam}`,
         headers: {
-          Authorization: AuthToken.getToken('accessToken'),
+          Authorization: auth ? `Bearer ${AuthToken.getToken('accessToken')}` : undefined,
         },
       });
   }
