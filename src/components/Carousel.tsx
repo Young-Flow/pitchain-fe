@@ -5,7 +5,6 @@ import { createContext, useContext, useRef, RefObject, ComponentProps, MouseEven
 
 const sliderRefContext = createContext<RefObject<Slider | null> | null>(null);
 
-//TODO: Nav 컴포넌트 작성
 export default function Carousel({ ...props }: Settings) {
   const sliderRef = useRef<Slider | null>(null);
 
@@ -48,6 +47,6 @@ Carousel.RightButton = function RightButton({ children, onClick, ...props }: Com
   );
 };
 
-Carousel.NavList = function NavList({ children }: ComponentProps<'button'>) {
-  return <div>네비게이션</div>;
+Carousel.NavList = function NavList({ ...props }: Settings) {
+  return <Slider {...props} />;
 };
