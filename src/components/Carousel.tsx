@@ -10,9 +10,7 @@ export default function Carousel({ ...props }: Settings) {
 
   return (
     <sliderRefContext.Provider value={sliderRef}>
-      <div>
-        <Slider {...props} />
-      </div>
+      <Slider ref={sliderRef} {...props} />
     </sliderRefContext.Provider>
   );
 }
@@ -45,8 +43,4 @@ Carousel.RightButton = function RightButton({ children, onClick, ...props }: Com
       {children}
     </button>
   );
-};
-
-Carousel.NavList = function NavList({ ...props }: Settings) {
-  return <Slider {...props} />;
 };
