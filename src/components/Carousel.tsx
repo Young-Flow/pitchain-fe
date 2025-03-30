@@ -5,12 +5,14 @@ import { createContext, useContext, useRef, RefObject, ComponentProps, MouseEven
 
 const sliderRefContext = createContext<RefObject<Slider | null> | null>(null);
 
-export default function Carousel({ ...props }: Settings) {
+export default function Carousel({ children, ...props }: Settings) {
   const sliderRef = useRef<Slider | null>(null);
 
   return (
     <sliderRefContext.Provider value={sliderRef}>
-      <Slider ref={sliderRef} {...props} />
+      <Slider ref={sliderRef} {...props}>
+        {children}
+      </Slider>
     </sliderRefContext.Provider>
   );
 }
@@ -43,4 +45,8 @@ Carousel.RightButton = function RightButton({ children, onClick, ...props }: Com
       {children}
     </button>
   );
+};
+
+Carousel.Slide = function Slide({ children, ...props }: ComponentProps<'div'>) {
+  return <div {...props}>{children}</div>;
 };
