@@ -2,14 +2,19 @@
   "files": [],
   "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
   "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strictPropertyInitialization": true,
     "baseUrl": "./",
     "paths": {
       "@assets/*": ["src/assets/*"],
       "@utils/*": ["src/utils/*"],
       "@hooks/*": ["src/hooks/*"],
+      "@constants/*": ["src/constants/*"],
       "@components/*": ["src/components/*"],
       "@widgets/*": ["src/widgets/*"],
       "@pages/*": ["src/pages/*"],
+      "@apis/*": ["src/apis/*"],
     }
   }
 }

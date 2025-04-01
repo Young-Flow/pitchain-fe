@@ -1,6 +1,7 @@
 import { ComponentPropsWithoutRef, ElementType } from 'react';
 import { ClickablePropsFormatter } from './ClickableFactory';
 import { ClickableFactoryProps } from './ClickableTypes';
+import clsx from 'clsx';
 
 export default function Clickable<T extends ElementType = 'button'>({
   children,
@@ -14,7 +15,7 @@ export default function Clickable<T extends ElementType = 'button'>({
   );
 
   return (
-    <Render className={className} {...restProps}>
+    <Render className={clsx(className, 'w-full')} {...restProps}>
       {children}
     </Render>
   );

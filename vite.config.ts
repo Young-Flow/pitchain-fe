@@ -14,6 +14,8 @@ export default defineConfig({
       '@assets': path.resolve(__dirname, 'src/assets'),
       '@pages': path.resolve(__dirname, 'src/pages'),
       '@widgets': path.resolve(__dirname, 'src/widgets'),
+      '@constants': path.resolve(__dirname, 'src/constants'),
+      '@apis': path.resolve(__dirname, 'src/apis'),
     },
   },
 });
