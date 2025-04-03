@@ -7,10 +7,16 @@ const sliderRefContext = createContext<RefObject<Slider | null> | null>(null);
 
 export default function Carousel({ children, ...props }: Settings) {
   const sliderRef = useRef<Slider | null>(null);
+  const defaultSettings: Settings = {
+    infinite: false,
+    nextArrow: <></>,
+    prevArrow: <></>,
+    ...props,
+  };
 
   return (
     <sliderRefContext.Provider value={sliderRef}>
-      <Slider ref={sliderRef} {...props}>
+      <Slider ref={sliderRef} {...defaultSettings}>
         {children}
       </Slider>
     </sliderRefContext.Provider>
