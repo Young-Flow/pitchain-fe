@@ -6,6 +6,7 @@ import SocialLogin from '@pages/sign/SocialLogin';
 import SocialCallback from '@pages/sign/SocialCallback';
 import BusinessSignIn from '@pages/sign/BusinessSignIn';
 import BusinessSignUp from '@pages/sign/BusinessSignUp';
+import MainPage from '@pages/MainPage';
 
 export default function App() {
   return (
@@ -22,8 +23,10 @@ export default function App() {
           <Route path="upBusiness" element={<BusinessSignUp />} />
           <Route path="SocialLogin" element={<SocialLogin />} />
         </Route>
-
+        {/* <Route path="/main" element={<MainLayout />}> */}
+        <Route path="/main" element={<MainPage />} />
         <Route path="*" element={<div>404 Not Found</div>} />
+        {/* </Route> */}
       </Routes>
     </BrowserRouter>
   );
