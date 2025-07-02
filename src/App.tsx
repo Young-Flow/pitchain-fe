@@ -7,6 +7,9 @@ import SocialCallback from '@pages/sign/SocialCallback';
 import BusinessSignIn from '@pages/sign/BusinessSignIn';
 import BusinessSignUp from '@pages/sign/BusinessSignUp';
 import MainPage from '@pages/MainPage';
+import WatchVideoPage from '@pages/WatchVideoPage';
+import BMDeatailPage from '@pages/BmDetailsPage';
+import PaymentPage from '@pages/PaymentPage';
 
 export default function App() {
   return (
@@ -25,8 +28,11 @@ export default function App() {
         </Route>
         {/* <Route path="/main" element={<MainLayout />}> */}
         <Route path="/main" element={<MainPage />} />
-        <Route path="*" element={<div>404 Not Found</div>} />
+        <Route path="watch/:initialShortPitch" element={<WatchVideoPage />} />
+        <Route path="details/:BMId" element={<BMDeatailPage />} />
+        <Route path="payment/:BMId" element={<PaymentPage />} />
         {/* </Route> */}
+        <Route path="*" element={<div>404 Not Found</div>} />
       </Routes>
     </BrowserRouter>
   );

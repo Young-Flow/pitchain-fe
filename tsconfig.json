@@ -4,6 +4,7 @@
   "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "baseUrl": "./",
     "paths": {
@@ -15,6 +16,7 @@
       "@widgets/*": ["src/widgets/*"],
       "@pages/*": ["src/pages/*"],
       "@apis/*": ["src/apis/*"],
+      "@types/*": ["src/types/*"]
     }
   }
 }
