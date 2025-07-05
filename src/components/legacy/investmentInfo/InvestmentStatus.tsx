@@ -1,4 +1,4 @@
-import { InvestmentInfo } from '@types/legacy/investmentInfo';
+import { InvestmentInfo } from 'legacy/investmentInfo';
 import { HTMLAttributes } from 'react';
 
 interface InvestmentStatusProps extends HTMLAttributes<HTMLDivElement> {
