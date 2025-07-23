@@ -1,7 +1,5 @@
 import { ComponentProps } from 'react';
 
-interface SkeletonProps extends ComponentProps<'div'> {}
-
-export default function Skeleton({ className, ...props }: SkeletonProps) {
+export default function Skeleton({ className, ...props }: ComponentProps<'div'>) {
   return <div className={`skeleton ${className}`} {...props} />;
 }
