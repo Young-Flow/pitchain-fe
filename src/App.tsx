@@ -7,6 +7,7 @@ import SocialCallback from '@pages/sign/SocialCallback';
 import BusinessSignIn from '@pages/sign/BusinessSignIn';
 import BusinessSignUp from '@pages/sign/BusinessSignUp';
 import MainPage from '@pages/MainPage';
+import PostBM from '@pages/postBM/PostBM';
 
 export default function App() {
   return (
@@ -14,7 +15,7 @@ export default function App() {
       <Routes>
         {/* 공통 서비스 */}
         <Route path="/" element={<DefaultLayout />}>
-          <Route index element={<Landing />} />
+          <Route index element={<PostBM />} />
           <Route path="main" element={<MainPage />} />
         </Route>
         {/* 로그인 및 회원가입 */}
