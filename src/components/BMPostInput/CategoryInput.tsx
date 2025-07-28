@@ -17,7 +17,7 @@ CategoryInput.GroupButtons = function () {
             isActive={false}
             data-category={key}
             onClick={() => console.log(key)}
-            className="flex w-[100px] justify-center"
+            className="flex justify-center"
           />
         </li>
       ))}
