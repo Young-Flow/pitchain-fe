@@ -1,14 +1,19 @@
 import { CategoryButton } from '@components/legacy/ui';
 import categoryList from '@constants/legacy/categoryList';
-import { ComponentProps } from 'react';
+import { ComponentProps, InputHTMLAttributes, useState } from 'react';
 
-export default function CategoryInput(props: ComponentProps<'div'>) {
-  return <div {...props} />;
+type CategoryInputProps = ComponentProps<'div'> & InputHTMLAttributes<HTMLInputElement>;
+export default function CategoryInput({ name, value, onChange, ...rest }: CategoryInputProps) {
+  return (
+    <div {...rest}>
+      <input type="hidden" name={name} value={value} onChange={onChange} />
+    </div>
+  );
 }
 
-CategoryInput.GroupButtons = function () {
+CategoryInput.GroupButtons = function (props: ComponentProps<'ul'>) {
   return (
-    <ul className="flex w-full justify-between">
+    <ul {...props}>
       {categoryList.map(({ key, name, icon }) => (
         <li key={key}>
           <CategoryButton
