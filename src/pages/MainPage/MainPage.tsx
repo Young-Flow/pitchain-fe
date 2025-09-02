@@ -2,13 +2,13 @@ import { MouseEvent } from 'react';
 import { ShortPitch } from 'src/types/legacy/shortpitch';
 import usePitchList from '@hooks/legacy/usePitchList';
 import { Sparkle } from '@assets/icons';
-import categoryList from '@constants/legacy/categoryList';
+import CATEGORY_LIST from '@constants/legacy/categoryList';
 import { SkeletonComponent, SkeletonProvider } from '@components/legacy/skeleton';
 import { CategoryButton, GroupButton } from '@components/legacy/ui';
 import { SubVideoRill, PitchListBlock } from './';
 
 export default function MainPage() {
-  const defaultCategory = categoryList[0].key;
+  const defaultCategory = CATEGORY_LIST[0].key;
 
   const {
     pitchList: BMList,
@@ -22,7 +22,7 @@ export default function MainPage() {
   } = usePitchList(defaultCategory);
 
   const groupList: { key: string; name: string }[] =
-    categoryList.find((categoryInfo) => categoryInfo.key === currentCategory)?.group ?? [];
+    CATEGORY_LIST.find((categoryInfo) => categoryInfo.key === currentCategory)?.group ?? [];
 
   function handleCategoryButtonClick(e: MouseEvent<HTMLButtonElement>) {
     if (e.currentTarget instanceof HTMLButtonElement) {
@@ -59,7 +59,7 @@ export default function MainPage() {
       randomIndex = Math.ceil(Math.random() * 3) - 1;
       i++;
     }
-    const randomCategory = categoryList[randomIndex];
+    const randomCategory = CATEGORY_LIST[randomIndex];
 
     return (
       <SubVideoRill
@@ -76,7 +76,7 @@ export default function MainPage() {
       <div className="relative flex w-full flex-col px-[232px]">
         <div className="fixed z-10 w-[1456px] bg-white px-16 pt-20">
           <ul className="flex justify-between gap-1 self-stretch">
-            {categoryList.map(({ key, name, icon }) => (
+            {CATEGORY_LIST.map(({ key, name, icon }) => (
               <li key={key} className="flex w-[100px] justify-center first:w-fit first:pr-5 last:w-fit last:pl-5">
                 <CategoryButton
                   icon={icon}

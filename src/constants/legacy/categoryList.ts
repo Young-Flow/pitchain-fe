@@ -1,18 +1,7 @@
 import * as categoryIcon from '@assets/category';
 import { Category } from 'src/types/legacy/category';
 
-const categoryList: Category[] = [
-  {
-    key: 'all',
-    name: '전체',
-    icon: categoryIcon.All,
-    group: [
-      {
-        key: '',
-        name: '',
-      },
-    ],
-  },
+const CATEGORY_LIST: Category[] = [
   {
     key: '테크/디지털',
     name: '디지털',
@@ -367,4 +356,4 @@ const categoryList: Category[] = [
   },
 ];
 
-export default categoryList;
+export default CATEGORY_LIST;
